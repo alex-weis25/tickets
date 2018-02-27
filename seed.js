@@ -215,7 +215,7 @@ const users = [
 const events = [
   {
     name: "Knicks vs. Lakers",
-    date: new Date(2018, 7, 18, 9, 30),
+    date: new Date(2018, 6, 18, 9, 30),
     duration: 2,
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
@@ -224,7 +224,7 @@ const events = [
   },
   {
     name: "Drake",
-    date: new Date(2018, 7, 18, 9, 30),
+    date: new Date(2018, 6, 18, 9, 30),
     duration: 3,
     description: "Live concert",
     venueId: 2,
@@ -232,7 +232,7 @@ const events = [
   },
   {
     name: "Louis C.K.",
-    date: new Date(2018, 7, 18, 9, 30),
+    date: new Date(2018, 6, 18, 9, 30),
     duration: 2,
     description: "Stand-up comedy",
     venueId: 3,
@@ -240,7 +240,7 @@ const events = [
   },
   {
     name: "Funny show",
-    date: new Date(2018, 7, 18, 9, 30),
+    date: new Date(2018, 6, 18, 9, 30),
     duration: 2,
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
@@ -249,7 +249,7 @@ const events = [
   },
   {
     name: "IronChef Live",
-    date: new Date(2018, 7, 18, 9, 30),
+    date: new Date(2018, 6, 18, 9, 30),
     duration: 2,
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
@@ -258,7 +258,7 @@ const events = [
   },
   {
     name: "More sports!",
-    date: new Date(2018, 7, 18, 9, 30),
+    date: new Date(2018, 6, 18, 9, 30),
     duration: 2,
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
@@ -267,7 +267,7 @@ const events = [
   },
   {
     name: "Smooth Jazz",
-    date: new Date(2018, 7, 18, 9, 30),
+    date: new Date(2018, 6, 18, 9, 30),
     duration: 2,
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
@@ -276,7 +276,7 @@ const events = [
   },
   {
     name: "Open Mic",
-    date: new Date(2018, 7, 18, 9, 30),
+    date: new Date(2018, 6, 18, 9, 30),
     duration: 2,
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
@@ -285,7 +285,7 @@ const events = [
   },
   {
     name: "Monster Truck DEMOLITION",
-    date: new Date(2018, 7, 18, 9, 30),
+    date: new Date(2018, 6, 18, 9, 30),
     duration: 2,
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
@@ -294,7 +294,7 @@ const events = [
   },
   {
     name: "eSports Live",
-    date: new Date(2018, 7, 18, 9, 30),
+    date: new Date(2018, 6, 18, 9, 30),
     duration: 2,
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
