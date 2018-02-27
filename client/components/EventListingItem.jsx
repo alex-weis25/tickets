@@ -20,10 +20,10 @@ export default function EventListingItem(props) {
           {event.venue.name}
         </h2>
         {
-          event.ticket.length ?
+          event.tickets.length ?
 
           (<h2>
-            {event.ticket.length} Tickets Remaining
+            {event.tickets.length} Tickets Remaining
           </h2>) :
           ( <h2> SOLD OUT! </h2>)
         }
