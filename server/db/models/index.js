@@ -22,9 +22,9 @@ const db = require('../db.js');
  */
 
  //Associations
- Venue.hasMany(Event); // Adds venueId to Events
+ Venue.hasMany(Event, {onDelete: 'cascade'}); // Adds venueId to Events
  Event.belongsTo(Venue); // adds implicit
- Event.hasMany(Ticket); // Adds eventId to Ticket
+ Event.hasMany(Ticket, {onDelete: 'cascade'}); // Adds eventId to Ticket
  Ticket.belongsTo(Event); // adds implicit
  Order.hasMany(Ticket); // Adds userId to ticket
  Ticket.belongsTo(Order) //adds implicit

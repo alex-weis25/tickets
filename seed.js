@@ -499,7 +499,7 @@ const main = () => {
   db
     .sync({ force: true })
     .then(() => {
-      console.log("Seeding databse...");
+      console.log("Seeding database...");
       return seed();
     })
     .then(() => console.log('Finished seeding database!'))
