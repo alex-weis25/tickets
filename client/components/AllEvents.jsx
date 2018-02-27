@@ -1,13 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import EventListingItem from './EventListingItem'
+import EventListingItem from './EventListingItem.jsx'
 
 /**
  * COMPONENT
  */
-export const AllEvents = (props) => {
-  const {events} = props
+function AllEvents(props){
+  //const {events} = props
+  console.log('in all events');
+  const events = props.events;
 
   return (
     <div>
@@ -40,5 +42,3 @@ const mapState = (state) => {
 }
 
 export default connect(mapState)(AllEvents)
-
-
