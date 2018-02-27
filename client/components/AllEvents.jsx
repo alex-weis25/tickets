@@ -10,8 +10,12 @@ export const AllEvents = (props) => {
 
   return (
     <div>
-      <h3>Welcome, {email}</h3>
+      <h1>All Events</h1>
+      <div>
+
+      </div>
     </div>
+
   )
 }
 
@@ -25,3 +29,5 @@ const mapState = (state) => {
 }
 
 export default connect(mapState)(AllEvents)
+
+
