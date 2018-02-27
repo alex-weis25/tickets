@@ -17,6 +17,9 @@ const Event = db.define('event', {
   description: {
     type: Sequelize.TEXT,
     allowNull: false
+  },
+  imgUrl: {
+    type: Sequelize.STRING
   }
 })
 

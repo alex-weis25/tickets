@@ -219,21 +219,24 @@ const events = [
     duration: 2,
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
-    venueId: 1
+    venueId: 1,
+    imgUrl: 'TBD'
   },
   {
     name: "Drake",
     date: "asdf",
     duration: 3,
     description: "Live concert",
-    venueId: 2
+    venueId: 2,
+    imgUrl: 'TBD'
   },
   {
     name: "Louis C.K.",
     date: "asdf",
     duration: 2,
     description: "Stand-up comedy",
-    venueId: 3
+    venueId: 3,
+    imgUrl: 'TBD'
   },
   {
     name: "Funny show",
@@ -241,7 +244,8 @@ const events = [
     duration: 2,
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
-    venueId: 4
+    venueId: 4,
+    imgUrl: 'TBD'
   },
   {
     name: "IronChef Live",
@@ -249,7 +253,8 @@ const events = [
     duration: 2,
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
-    venueId: 5
+    venueId: 5,
+    imgUrl: 'TBD'
   },
   {
     name: "More sports!",
@@ -257,7 +262,8 @@ const events = [
     duration: 2,
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
-    venueId: 1
+    venueId: 1,
+    imgUrl: 'TBD'
   },
   {
     name: "Smooth Jazz",
@@ -265,7 +271,8 @@ const events = [
     duration: 2,
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
-    venueId: 7
+    venueId: 7,
+    imgUrl: 'TBD'
   },
   {
     name: "Open Mic",
@@ -273,7 +280,8 @@ const events = [
     duration: 2,
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
-    venueId: 6
+    venueId: 6,
+    imgUrl: 'TBD'
   },
   {
     name: "Monster Truck DEMOLITION",
@@ -281,7 +289,8 @@ const events = [
     duration: 2,
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
-    venueId: 2
+    venueId: 2,
+    imgUrl: 'TBD'
   },
   {
     name: "eSports Live",
@@ -289,7 +298,8 @@ const events = [
     duration: 2,
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
-    venueId: 4
+    venueId: 4,
+    imgUrl: 'TBD'
   }
 ];
 
@@ -367,112 +377,112 @@ const tickets = [
     price: 100,
     seat: "GA",
     eventId: 1,
-    userId: null,
+    orderId: null,
     sellerId: 1
   },
   {
     price: 100,
     seat: "GA",
     eventId: 2,
-    userId: null,
+    orderId: null,
     sellerId: 2
   },
   {
     price: 100,
     seat: "GA",
     eventId: 3,
-    userId: null,
+    orderId: null,
     sellerId: 3
   },
   {
     price: 100,
     seat: "GA",
     eventId: 4,
-    userId: null,
+    orderId: null,
     sellerId: 4
   },
   {
     price: 100,
     seat: "GA",
     eventId: 5,
-    userId: null,
+    orderId: null,
     sellerId: 5
   },
   {
     price: 100,
     seat: "GA",
     eventId: 6,
-    userId: null,
+    orderId: null,
     sellerId: 6
   },
   {
     price: 100,
     seat: "GA",
     eventId: 1,
-    userId: null,
+    orderId: null,
     sellerId: 7
   },
   {
     price: 100,
     seat: "GA",
     eventId: 2,
-    userId: null,
+    orderId: null,
     sellerId: 8
   },
   {
     price: 100,
     seat: "GA",
     eventId: 1,
-    userId: null,
+    orderId: null,
     sellerId: 1
   },
   {
     price: 100,
     seat: "GA",
     eventId: 2,
-    userId: null,
+    orderId: null,
     sellerId: 9
   },
   {
     price: 100,
     seat: "GA",
     eventId: 5,
-    userId: null,
+    orderId: null,
     sellerId: 10
   },
   {
     price: 100,
     seat: "GA",
     eventId: 7,
-    userId: null,
+    orderId: null,
     sellerId: 8
   },
   {
     price: 100,
     seat: "GA",
     eventId: 2,
-    userId: null,
+    orderId: null,
     sellerId: 4
   },
   {
     price: 100,
     seat: "GA",
     eventId: 3,
-    userId: null,
+    orderId: null,
     sellerId: 6
   },
   {
     price: 100,
     seat: "GA",
     eventId: 1,
-    userId: null,
+    orderId: null,
     sellerId: 1
   },
   {
     price: 100,
     seat: "GA",
     eventId: 5,
-    userId: null,
+    orderId: null,
     sellerId: 7
   }
 ];
