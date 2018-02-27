@@ -15,6 +15,6 @@ const Ticket = db.define('ticket', {
 
 module.exports = Ticket;
 
+//Hooks
 
-//ticket belongs to many order through orderLine;
-//ticket belongs to order as purchaseOrder
+

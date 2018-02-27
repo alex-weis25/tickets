@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize')
-const db = require('../db')
+const db = require('../db');
+const Event = require('./event');
+const Ticket = require('./ticket');
 
 const Venue = db.define('venue', {
   name: {
@@ -39,8 +41,28 @@ const Venue = db.define('venue', {
       return street + ', ' + city + '\n' + state + ', ' + zip;
     }
   }
+}, {
+  scopes: {
+    showEvents: () => ({
+      include: [{
+        model: db.model('event'),
+        as: 'events'
+      }]
+    })
+  }
+
 })
 
+Venue.hook('beforeDestroy', function(venue) {
+  const eventDeleteId = venue.id;
+  return Ticket.destroy({
+    where: {
+      eventId: eventDeleteId
+    }
+  })
+  .then(() => {
 
+  })
+})
 
 module.exports = Venue;

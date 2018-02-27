@@ -498,8 +498,19 @@ const main = () => {
   console.log("Syncing db...");
   db
     .sync({ force: true })
+    // .then(() => {
+    //   db.query(`ALTER TABLE "public"."tickets"
+    //   DROP CONSTRAINT "tickets_eventId_fkey",
+    //   ADD CONSTRAINT "tickets_eventId_fkey" FOREIGN KEY ("eventId") REFERENCES "public"."events"("id") ON DELETE CASCADE ON UPDATE CASCADE;`)
+    // })
+    // .then(() => {
+    //   db.query(`ALTER TABLE "public"."events"
+    //   DROP CONSTRAINT "events_venueId_fkey",
+    //   ADD CONSTRAINT "events_venueId_fkey" FOREIGN KEY ("venueId") REFERENCES "public"."venues"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+    // `)
+    // })
     .then(() => {
-      console.log("Seeding databse...");
+      console.log("Seeding database...");
       return seed();
     })
     .then(() => console.log('Finished seeding database!'))
