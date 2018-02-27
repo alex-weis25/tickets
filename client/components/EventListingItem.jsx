@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
  * COMPONENT
  */
 
-export default EventListingItem = (props) => {
+export default function EventListingItem(props) {
   const {event} = props
 
   return (
