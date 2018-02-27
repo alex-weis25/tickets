@@ -25,8 +25,7 @@ const User = db.define('user', {
     allowNull: false
   },
   creditCard: {
-    type: Sequelize.INTEGER,
-    allowNull: false
+    type: Sequelize.INTEGER
   },
   adminStatus: {
     type: Sequelize.ENUM,
