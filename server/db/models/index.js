@@ -5,6 +5,7 @@ const Review = require('./review');
 const Ticket = require('./ticket');
 const OrderLine = require('./orderLine');
 const Order = require('./order');
+const db = require('../db.js');
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -36,6 +37,7 @@ const Order = require('./order');
 
 
 module.exports = {
+  db,
   User,
   Venue,
   Event,
