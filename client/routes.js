@@ -3,7 +3,8 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
-import {me} from './store'
+import AllEvents from './components/AllEvents.jsx'
+import {me, fetchEvents} from './store'
 
 /**
  * COMPONENT
@@ -19,7 +20,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route exact path="/" component={UserHome} />
+        <Route exact path="/" component={AllEvents} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         {
@@ -51,6 +52,7 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
       dispatch(me())
+      dispatch(fetchEvents())
     }
   }
 }
