@@ -19,12 +19,15 @@ const Venue = db.define('venue', {
     allowNull: false
   },
   zip: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     allowNull: false
   },
   description: {
     type: Sequelize.TEXT,
     allowNull: false
+  },
+  imgUrl: {
+    type: Sequelize.STRING //Set default value to venue 'stock'
   },
   address: {
     type: Sequelize.VIRTUAL,

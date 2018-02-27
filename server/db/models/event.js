@@ -7,7 +7,7 @@ const Event = db.define('event', {
     allowNull: false
   },
   date: {
-    type: Sequelize.DATE,
+    type: Sequelize.STRING,
     allowNull: false
   },
   duration: {
@@ -17,6 +17,9 @@ const Event = db.define('event', {
   description: {
     type: Sequelize.TEXT,
     allowNull: false
+  },
+  imgUrl: {
+    type: Sequelize.STRING
   }
 })
 

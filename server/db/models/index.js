@@ -5,6 +5,7 @@ const Review = require('./review');
 const Ticket = require('./ticket');
 const OrderLine = require('./orderLine');
 const Order = require('./order');
+const db = require('../db.js');
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -25,17 +26,19 @@ const Order = require('./order');
  Event.belongsTo(Venue); // adds implicit
  Event.hasMany(Ticket); // Adds eventId to Ticket
  Ticket.belongsTo(Event); // adds implicit
- User.hasMany(Ticket); // Adds userId to ticket
+ Order.hasMany(Ticket); // Adds userId to ticket
+ Ticket.belongsTo(Order) //adds implicit
  Ticket.belongsTo(User, {as: 'seller'}); //Adds
  Order.hasMany(OrderLine); // Adds orderId to OrderLine
  Order.belongsTo(User); // adds implicit
  Order.belongsToMany(Ticket, {through: OrderLine}); // Adds
  Ticket.belongsToMany(Order, {through: OrderLine }); // Adds
- Review.belongsTo(User); // adds implicit
- User.hasMany(Review) // Adds userId to Review
+ Review.belongsTo(Event); // adds implicit
+ Event.hasMany(Review) // Adds userId to Review
 
 
 module.exports = {
+  db,
   User,
   Venue,
   Event,
