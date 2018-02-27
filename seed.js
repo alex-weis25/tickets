@@ -10,6 +10,11 @@ const {
   Order
 } = require("./server/db/models/index");
 
+function getRandomImage(){
+  let random = Math.floor(Math.random() * 1084);
+  return `https://picsum.photos/600/400/?image=${random}`;
+}
+
 const venues = [
   {
     name: "Madison Square Garden",
@@ -19,7 +24,7 @@ const venues = [
     zip: "10001",
     description:
       "Madison Square Garden, often called 'MSG' or simply 'The Garden', is a multi-purpose indoor arena in the New York City borough of Manhattan.",
-    imageUrl: "TBD"
+    imageUrl: getRandomImage()
   },
   {
     name: "Barclays Center",
@@ -29,7 +34,7 @@ const venues = [
     zip: "10001",
     description:
       "Madison Square Garden, often called 'MSG' or simply 'The Garden', is a multi-purpose indoor arena in the New York City borough of Manhattan.",
-    imageUrl: "TBD"
+    imageUrl: getRandomImage()
   },
   {
     name: "Metlife Stadium",
@@ -39,7 +44,7 @@ const venues = [
     zip: "10001",
     description:
       "Madison Square Garden, often called 'MSG' or simply 'The Garden', is a multi-purpose indoor arena in the New York City borough of Manhattan.",
-    imageUrl: "TBD"
+    imageUrl: getRandomImage()
   },
   {
     name: "Bowery Ballroom",
@@ -49,7 +54,7 @@ const venues = [
     zip: "10001",
     description:
       "Madison Square Garden, often called 'MSG' or simply 'The Garden', is a multi-purpose indoor arena in the New York City borough of Manhattan.",
-    imageUrl: "TBD"
+    imageUrl: getRandomImage()
   },
   {
     name: "Apollo Theater",
@@ -59,7 +64,7 @@ const venues = [
     zip: "10001",
     description:
       "Madison Square Garden, often called 'MSG' or simply 'The Garden', is a multi-purpose indoor arena in the New York City borough of Manhattan.",
-    imageUrl: "TBD"
+    imageUrl: getRandomImage()
   },
   {
     name: "Comedy Cellar",
@@ -69,7 +74,7 @@ const venues = [
     zip: "10001",
     description:
       "Madison Square Garden, often called 'MSG' or simply 'The Garden', is a multi-purpose indoor arena in the New York City borough of Manhattan.",
-    imageUrl: "TBD"
+    imageUrl: getRandomImage()
   },
   {
     name: "Dizzy's Club",
@@ -79,7 +84,7 @@ const venues = [
     zip: "10001",
     description:
       "Madison Square Garden, often called 'MSG' or simply 'The Garden', is a multi-purpose indoor arena in the New York City borough of Manhattan.",
-    imageUrl: "TBD"
+    imageUrl: getRandomImage()
   }
 ];
 
@@ -220,7 +225,7 @@ const events = [
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
     venueId: 1,
-    imgUrl: 'TBD'
+    imgUrl: getRandomImage()
   },
   {
     name: "Drake",
@@ -228,7 +233,7 @@ const events = [
     duration: 3,
     description: "Live concert",
     venueId: 2,
-    imgUrl: 'TBD'
+    imgUrl: getRandomImage()
   },
   {
     name: "Louis C.K.",
@@ -236,7 +241,7 @@ const events = [
     duration: 2,
     description: "Stand-up comedy",
     venueId: 3,
-    imgUrl: 'TBD'
+    imgUrl: getRandomImage()
   },
   {
     name: "Funny show",
@@ -245,7 +250,7 @@ const events = [
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
     venueId: 4,
-    imgUrl: 'TBD'
+    imgUrl: getRandomImage()
   },
   {
     name: "IronChef Live",
@@ -254,7 +259,7 @@ const events = [
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
     venueId: 5,
-    imgUrl: 'TBD'
+    imgUrl: getRandomImage()
   },
   {
     name: "More sports!",
@@ -263,7 +268,7 @@ const events = [
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
     venueId: 1,
-    imgUrl: 'TBD'
+    imgUrl: getRandomImage()
   },
   {
     name: "Smooth Jazz",
@@ -272,7 +277,7 @@ const events = [
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
     venueId: 7,
-    imgUrl: 'TBD'
+    imgUrl: getRandomImage()
   },
   {
     name: "Open Mic",
@@ -281,7 +286,7 @@ const events = [
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
     venueId: 6,
-    imgUrl: 'TBD'
+    imgUrl: getRandomImage()
   },
   {
     name: "Monster Truck DEMOLITION",
@@ -290,7 +295,7 @@ const events = [
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
     venueId: 2,
-    imgUrl: 'TBD'
+    imgUrl: getRandomImage()
   },
   {
     name: "eSports Live",
@@ -299,7 +304,7 @@ const events = [
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
     venueId: 4,
-    imgUrl: 'TBD'
+    imgUrl: getRandomImage()
   }
 ];
 
