@@ -7,14 +7,12 @@ import EventListingItem from './EventListingItem.jsx'
  * COMPONENT
  */
 function AllEvents(props){
-  //const {events} = props
-  console.log('in all events');
   const events = props.events;
 
   return (
     <div>
       <h1>All Events</h1>
-      <div>
+      <div className="allEventsList">
         {
           events.map(event => {
             return (
