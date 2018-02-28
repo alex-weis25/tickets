@@ -28,7 +28,10 @@ form div {
   border-radius: 0%;
   width: 100vw;
   z-index: 5;
-  padding: 0% 2%;
+}
+
+.nav-group a {
+  flex: 4;
 }
 
 .nav-group h1{
@@ -40,15 +43,77 @@ form div {
   flex: 1;
 }
 
-.nav-group nav div{
+.nav-group nav {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   font-size: 1.1em;
   flex: 1;
 }
 
+.nav-group nav div {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  text-align: center;
+}
+
 .nav-group a {
   margin: 0% 3% 0% 3%;
+  color: white;
+}
+
+.allEventsList{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.eventListing {
+  margin: 3%;
+  height: 400px;
+  width: 600px;
+}
+
+.eventListing a{
+  position: relative;
+}
+
+.eventListing img{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.eventInfo{
+  color: white;
+  height: 400px;
+  width: 600px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+
+.eventNameVenue {
+  display: flex;
+  justify-content: space-around;
+  padding: 3%;
+  align-items: center;
+  width: 562px;
+  background-color: rgba(4, 47, 66, 0.45);
+}
+
+.eventNameVenue h4{
+  padding: 0 1%;
+  text-align: center;
+}
+
+.eventTickets,.SoldOut{
+  padding: 3%;
+  margin: 10px;
+  background-color: rgba(4, 47, 66, 0.6);
+  border-radius: 5%;
 }
