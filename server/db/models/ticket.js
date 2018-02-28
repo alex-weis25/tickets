@@ -3,7 +3,7 @@ const db = require('../db')
 
 const Ticket = db.define('ticket', {
   price: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.DECIMAL,
     allowNull: false
   },
   seat: {
@@ -14,7 +14,4 @@ const Ticket = db.define('ticket', {
 })
 
 module.exports = Ticket;
-
-//Hooks
-
 

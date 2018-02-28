@@ -1,13 +1,27 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
+const Sequelize = require("sequelize");
+const db = require("../db");
 
-const Order = db.define('order', {
-  status: {
-    type: Sequelize.ENUM,
-    values: ['in-cart', 'purchased'],
-    defaultValue: 'in-cart'
+const Order = db.define(
+  "order",
+  {
+    status: {
+      type: Sequelize.ENUM,
+      values: ["in-cart", "purchased"],
+      defaultValue: "in-cart"
+    }
+  },
+  {
+    scopes: {
+      showTickets: () => ({
+        include: [
+          {
+            model: db.model("ticket"),
+            as: "tickets"
+          }
+        ]
+      })
+    }
   }
-})
+);
 
 module.exports = Order;
-

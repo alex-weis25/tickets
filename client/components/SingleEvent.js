@@ -18,7 +18,7 @@ export class SingleEvent extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    console.log("event target", event);
+    console.log("event target", event.target);
   };
 
   render() {
@@ -42,12 +42,13 @@ export class SingleEvent extends Component {
                 <div key={ticket.id} className="individual-ticket">
                   <li>
                     {ticket.seat} ${ticket.price}
-                    <input value={this.value} type="checkbox" name={ticket.id} />
+                    <input value='checked' type="checkbox" name={ticket.id} />
                   </li>
                 </div>
               );
             })}
-          <button type="submit">Add to cart</button>
+          <button type="btn-add-to-cart">Add to cart</button>
+          <button type="btn-checkout">Checkout!</button>
         </form>
       </div>
     );
