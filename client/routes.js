@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import AllEvents from './components/AllEvents.jsx'
 import {me, fetchEvents} from './store'
+import SingleEvent from './components/SingleEvent';
 
 /**
  * COMPONENT
@@ -23,6 +24,7 @@ class Routes extends Component {
         <Route exact path="/" component={AllEvents} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/event/:id" component={SingleEvent} />
         {
           isLoggedIn &&
             <Switch>

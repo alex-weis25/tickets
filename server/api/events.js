@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
 
 //Get single event
 router.get('/:eventId', (req, res, next) => {
-  Event.findById(req.params.eventId)
+  Event.scope('showTickets').findById(req.params.eventId)
   .then(found => {
     res.status(200).json(found);
   })
