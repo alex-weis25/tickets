@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const { Event } = require('../db/models')
+const permChecker = require('./permChecker');
 module.exports = router;
 
 
@@ -45,10 +46,15 @@ router.delete('/:eventId', (req, res, next) => {
   .catch(next);
 })
 
-router.post('/', (req, res, next) => {
-  Event.create(req.body)
+//Create event
+router.post('/', permChecker, (req, res, next) => {
+  Event.create(req.body.data)
   .then(created => {
     res.status(201).json(created);
   })
-  .catch(next);
+  .catch(error => {
+    console.error(error);
+    res.send(error);
+    next();
+  });
 })
