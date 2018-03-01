@@ -45,7 +45,7 @@ export class SingleEvent extends Component {
                 </div>
               );
             })}
-          <button disabled={selectedTickets.length<1} type="submit">Add to cart</button>
+          <button disabled={selectedTickets.length < 1 ? "disabled" : "enabled"} type="submit">Add to cart</button>
         </form>
       </div>
     );
