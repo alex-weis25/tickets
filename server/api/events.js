@@ -5,7 +5,7 @@ module.exports = router;
 
 // Pulls all events from DB..."fetch" on home page
 router.get('/', (req, res, next) => {
-  Event.scope('showTickets').findAll()
+  Event.scope('showDetails').findAll()
   .then(events => {
     res.status(200).json(events);
   })
@@ -14,10 +14,11 @@ router.get('/', (req, res, next) => {
 
 //Get single event
 router.get('/:eventId', (req, res, next) => {
-  Event.scope('showTickets').findById(req.params.eventId)
+  Event.scope('showDetails').findById(req.params.eventId)
   .then(found => {
     res.status(200).json(found);
   })
+  .catch(next);
 });
 
 //Update event

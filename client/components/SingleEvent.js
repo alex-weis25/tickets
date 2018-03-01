@@ -39,7 +39,7 @@ export class SingleEvent extends Component {
               return (
                 <div key={ticket.id} className="individual-ticket">
                   <li>
-                    {ticket.seat} ${ticket.price} 
+                    {ticket.seat} ${ticket.price}
                     <input value={ticket.id}  onChange={(event) => this.props.handleChange(event, tickets)} type="checkbox" name="ticket" />
                   </li>
                 </div>
@@ -57,7 +57,7 @@ const MapState = ({ events, user , cart, selectedTicketsStore }) => {
   const selectedTickets = selectedTicketsStore.tickets;
   const userId = user.id;
   const orderId = cart.orderId;
-  return { userId, selectedEvent, orderId, selectedTickets } 
+  return { userId, selectedEvent, orderId, selectedTickets }
 };
 const MapDispatch = (dispatch, ownProps) => ({
   dispatchEvent: () => dispatch(fetchEvent(+ownProps.match.params.id)),
