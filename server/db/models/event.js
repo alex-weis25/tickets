@@ -30,7 +30,8 @@ const Event = db.define('event', {
         as: 'tickets',
         where: {
           orderId: null
-        }
+        },
+        required: false
       },
       {
         model: db.model('venue'),
