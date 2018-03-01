@@ -1,5 +1,8 @@
 const router = require('express').Router()
 const {User} = require('../db/models')
+const {Ticket} = require('../db/models');
+const {Order} = require('../db/models');
+
 module.exports = router
 
 router.get('/', (req, res, next) => {
@@ -11,4 +14,16 @@ router.get('/', (req, res, next) => {
   })
     .then(users => res.json(users))
     .catch(next)
+})
+
+//Populate users
+router.get('/cart/:userId', (req, res, next) => {
+  Order.scope('showTickets').findOne({ where: {
+    userId: req.params.userId,
+    status: 'in-cart'
+  }})
+  .then(orderList => {
+    res.json(orderList)
+  })
+  .catch(next);
 })

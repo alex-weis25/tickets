@@ -18,6 +18,7 @@ router.get('/:venueId', (req, res, next) => {
   .then(found => {
     res.status(200).json(found);
   })
+  .catch(next);
 });
 
 //Update venue

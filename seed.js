@@ -492,12 +492,69 @@ const tickets = [
   }
 ];
 
+const orders = [
+  {
+    status: 'in-cart',
+    userId: 1
+  },
+  {
+    status: 'in-cart',
+    userId: 2
+  },
+  {
+    status: 'in-cart',
+    userId: 3
+  },
+  {
+    status: 'in-cart',
+    userId: 4
+  }
+];
+
+const orderLines = [
+  {
+    orderId: 1,
+    ticketId: 1
+  },
+  {
+    orderId: 1,
+    ticketId: 3
+  },
+  {
+    orderId: 1,
+    ticketId: 4
+  },
+  {
+    orderId: 1,
+    ticketId: 10
+  },
+  {
+    orderId: 2,
+    ticketId: 10
+  },
+  {
+    orderId: 1,
+    ticketId: 8
+  },
+  {
+    orderId: 3,
+    ticketId: 8
+  },
+  {
+    orderId: 3,
+    ticketId: 4
+  },
+]
+
+
 const seed = () =>
   Promise.all(venues.map(venue => Venue.create(venue)))
     .then(() => Promise.all(users.map(user => User.create(user))))
     .then(() => Promise.all(events.map(event => Event.create(event))))
     .then(() => Promise.all(tickets.map(ticket => Ticket.create(ticket))))
-    .then(() => Promise.all(reviews.map(review => Review.create(review))));
+    .then(() => Promise.all(reviews.map(review => Review.create(review))))
+    .then(() => Promise.all(orders.map(order => Order.create(order))))
+    .then(() => Promise.all(orderLines.map(orderLine => OrderLine.create(orderLine))));
 
 const main = () => {
   console.log("Syncing db...");
