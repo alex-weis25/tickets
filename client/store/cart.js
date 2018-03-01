@@ -23,19 +23,19 @@ const initialState = {
 const initCart = order => ({type: INIT_CART, order})
 const addTickets = tickets => ({type: ADD_TICKETS, tickets})
 const clearCart = () => ({type: CLEAR_CART, initialState})
-const removeTickets = tickets => ({type: REMOVE_TICKET, tickets})
+const removeTickets = tickets => ({type: REMOVE_TICKETS, tickets})
 
 /**
  * REDUCER
  */
-export default function (state = initialState, action) {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case INIT_CART:
     return action
-    
+
     case ADD_TICKETS:
     return Object.assign({}, state, {tickets: action.tickets})
-    
+
     case CLEAR_CART:
     return action;
 
@@ -87,8 +87,8 @@ export const removeTicketFromOrder = (orderId, tickets) =>
     .then(updatedOrder => updatedOrder.tickets)
     .then(tickets => dispatch(removeTickets(tickets)))
     .catch(err => console.log(err))
-    
-  
+
+
 export const submitOrder = (orderId) =>
   dispatch =>
     axios.put(`/api/orders/purchase/${orderId}`)
