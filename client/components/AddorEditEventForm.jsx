@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import VenueDropDownItem from '../VenueDropDownItem.jsx';
+import VenueDropDown from './VenueDropDown.jsx';
 import Validate, {ValidationItems, ValidationButton} from 'react-real-time-form-validation';
 const formValidation = new Validate();
 
@@ -101,18 +101,10 @@ export default class AddOrEditEventForm extends Component {
           />
           <ValidationItems name="imgUrl"/>
         </div>
-        {/* <div className="formItem">
+        <div className="formItem">
           <legend>Venue</legend>
-          <select
-            name="campusId"
-            type="number"
-            defaultValue={this.props.campusId}
-          >
-            {this.props.campuses.map(campus => {
-              return <CampusDropDownItem key={campus.id} campus={campus} />
-            })}
-          </select>
-        </div> */}
+          <VenueDropDown />
+        </div>
         <ValidationButton name={this.props.formType} />
         {this.props.error.map((message, idx) => <div key={idx} >{message}</div>)}
       </form>
