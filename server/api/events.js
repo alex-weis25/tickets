@@ -50,11 +50,12 @@ router.delete('/:eventId', (req, res, next) => {
 router.post('/', permChecker, (req, res, next) => {
   Event.create(req.body.data)
   .then(created => {
-    res.status(201).json(created);
+    return Event.scope('showDetails').findById(created.id)
   })
+  .then(found => res.status(201).json(found))
   .catch(error => {
     console.error(error);
-    res.send(error);
+    res.json(error);
     next();
   });
 })
