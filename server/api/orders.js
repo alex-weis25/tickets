@@ -1,6 +1,5 @@
 const router = require('express').Router()
-const { Order } = require('../db/models');
-const { OrderLine } = require('../db/models');
+const { Order, OrderLine, Ticket } = require('../db/models');
 module.exports = router;
 
 
@@ -25,7 +24,7 @@ router.get('/:orderId', (req, res, next) => {
 // Add tix to order in customer cart...need orderId and ticketId
 router.put('/:orderId', (req, res, next) => {
   const newTickets = req.body.tickets; //Assume obj w/ order id & arr of tickets
-  const updatedId = req.body.orderId
+  const updatedId = req.params.orderId
   const newOrders = newTickets.map(ticket => {
     return OrderLine.build({
       orderId: updatedId,
@@ -66,32 +65,36 @@ router.post('/users/:userId', (req, res, next) => {
   .catch(next);
 })
 
-  // OrderLines.create(req.params.orderId)
-  // .then(found => {
-  //   console.log(found);
-  //   found.update(req.body);
+//User purchases tickets, changes order status and adds order Id to tickets. Need to remove other orderLines with same ticketIds and different orderIds
+router.put('/purchase/:orderId', (req, res, next) => {
+  Order.scope('showTickets').findById(req.params.orderId)
+  .then(found => {
+    return found.update({
+      status: 'purchased'
+    })
+  })
+  .then(purchased => {
+    const tickets = purchased.tickets;
+    tickets.map(ticket => {
+      ticket.update({
+        orderId: req.params.orderId
+      })
+    });
+    return tickets
+  })
+  // .then(removeTix => {
+  //   console.log(removeTix[0].id);
+  //   removeTix.map(ticket => {
+  //     OrderLine.destroy({ where: {
+  //       ticketId: ticket.id,
+  //       orderId: {
+  //         $ne: req.params.orderId
+  //       }
+  //     }})
+  //   })
   // })
-  // .then(updated => {
-  //   res.status(200).json(updated);
-  // })
-  // .catch(next);
-
-// //Delete order
-// router.delete('/:orderId', (req, res, next) => {
-//   Order.findById(req.params.orderId)
-//   .then(found => {
-//     found.destroy();
-//   })
-//   .then(() => {
-//     res.sendStatus(204);
-//   })
-//   .catch(next);
-// })
-
-// router.post('/', (req, res, next) => {
-//   Order.create(req.body)
-//   .then(created => {
-//     res.status(201).json(created);
-//   })
-//   .catch(next);
-// })
+  .then(sendIt => {
+    res.status(201).json(sendIt);
+  })
+  .catch(next);
+})
