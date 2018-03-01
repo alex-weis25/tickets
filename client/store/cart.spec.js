@@ -4,7 +4,7 @@ import {expect} from 'chai'
 import {default as reducer, INIT_CART, ADD_TICKETS, CLEAR_CART, REMOVE_TICKETS} from './cart'
 
 describe('cart reducer', () => {
-  xit('starts off with []', () => {
+  xit('starts off with an empty cart', () => {
     const initialState = reducer(undefined, {type: '@@INIT'})
     expect(initialState).to.eql([])
   })
@@ -16,7 +16,7 @@ describe('cart reducer', () => {
     expect(cart).to.eql([])
   })
 
-  xit('responds to ADD_TICKETS by adding tickets the cart', () => {
+  xit('responds to ADD_TICKETS by adding tickets to the cart', () => {
     const initialCart = [1, 2, 3]
     const tickets = reducer(initialCart, {
       type: ADD_TICKETS,
@@ -34,10 +34,11 @@ describe('cart reducer', () => {
       type: CLEAR_CART,
     })
     expect(initialCart).to.eql([1, 2, 3], 'creates initial cart')
+    // review code below
     expect( ).to.eql([], 'clears the cart')
   })
 
-  xit('responds to REMOVE_TICKETS by removing tickets the cart', () => {
+  xit('responds to REMOVE_TICKETS by removing tickets to the cart', () => {
     const initialCart = [1, 2, 3]
     const tickets = reducer(initialCart, {
       type: REMOVE_TICKETS,
