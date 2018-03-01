@@ -56,6 +56,5 @@ router.post('/', permChecker, (req, res, next) => {
   .catch(error => {
     console.error(error);
     res.json(error);
-    next();
   });
 })
