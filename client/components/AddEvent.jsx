@@ -24,7 +24,7 @@ class AddEvent extends Component{
         duration: event.target.duration.value,
         description: this.nullIfBlank(event.target.description.value),
         imgUrl: this.nullIfBlank(event.target.imgUrl.value),
-        venueId: 1
+        venueId: event.target.venueId.value
       }
     }
     this.props.thunkAddEvent(createBody);
