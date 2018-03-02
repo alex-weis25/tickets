@@ -28,19 +28,32 @@ export const me = () =>
         dispatch(getUser(res.data || defaultUser)))
       .catch(err => console.log(err))
 
-export const auth = (email, password, method) =>
+export const auth = (userInfo, method) =>
   dispatch =>
-    axios.post(`/auth/${method}`, { email, password })
+    axios.post(`/auth/${method}`, userInfo)
       .then(res => res.data)
       .then(user => {
         dispatch(getUser(user))
-        history.push('/home')
+        history.push('/')
         return user.id
       }, authError => { // rare example: a good use case for parallel (non-catch) error handler
         dispatch(getUser({error: authError}))
       })
       .then(userId=> dispatch(fetchCart(userId)))
       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
+
+//To set password after google auth sign in
+export const authPassword = (userInfo, method) =>
+dispatch => {
+  axios.put(`/auth/${method}`, userInfo)
+    .then(res => {
+      console.log('user received', res.data);
+      dispatch(getUser(res.data))
+      history.push('/home')
+    })
+}
+
+
 
 export const logout = () =>
   dispatch =>
