@@ -6,7 +6,7 @@ const Ticket = require('./ticket');
 const OrderLine = require('./orderLine');
 const Order = require('./order');
 const Permission = require('./permission');
-const PermissionRel = require('./permissionRel');
+const PermissionRel = require('./PermissionRel');
 const db = require('../db.js');
 
 /**

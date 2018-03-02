@@ -8,8 +8,7 @@ const {
   Ticket,
   OrderLine,
   Order,
-  Permission,
-  PermissionRel
+  Permission
 } = require("./server/db/models/index");
 
 function getRandomImage(){
