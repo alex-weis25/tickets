@@ -19,7 +19,8 @@ const Event = db.define('event', {
     allowNull: false
   },
   imgUrl: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    defaultValue: 'https://picsum.photos/600/400/?image=315'
   }
 }, {
   scopes: {

@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom'
 
 export default function EventListingItem(props) {
   const {event} = props
+  const venueName = event.venue ? event.venue.name : '';
+  const tickets = event.tickets ? event.tickets : [];
   return (
     <div className="eventListing">
       <Link to={`event/${event.id}`}>
@@ -16,11 +18,11 @@ export default function EventListingItem(props) {
           <div className="eventNameVenue">
             <h2>{event.name}</h2>
             <h4> at the </h4>
-            <h2>{event.venue.name}</h2>
+            <h2>{venueName}</h2>
           </div>
 
           {
-            event.tickets.length ?
+            tickets.length ?
 
             (<div className="eventTickets">
               {event.tickets.length} Tickets Remaining

@@ -21,6 +21,7 @@ export class SingleEvent extends Component {
     const { selectedEvent } = this.props
     const venue = selectedEvent.venue;
     const event = selectedEvent;
+    console.log('props: ', this.props);
     return (
       <div>
         <div className="single-title">
