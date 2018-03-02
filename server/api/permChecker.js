@@ -1,6 +1,7 @@
 const { User } = require('../db/models')
 
-//this is temporary for now, but until we have a list of allowed actions in the database, this will work as our hardcoded permissions
+//this is temporary for now, but until we have a list of allowed 
+//actions in the database, this will work as our hardcoded permissions
 const permissions = {addEvent: ['1']}
 
 

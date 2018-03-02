@@ -52,7 +52,17 @@ export default function reducer(state = initialState, action) {
  */
 export const fetchCart = (userId) =>
   dispatch =>
+    userId ?
     axios.get(`api/users/cart/${userId}`)
+      .then(res => res.data)
+      .then(order => {
+        if(!order) return undefined;
+        const orderId = order.id
+        const tickets = order.tickets
+        dispatch(initCart({orderId, tickets}))
+      })
+      .catch(err => console.log(err))
+    : axios.get(`/api/orders/unauthUser`)
       .then(res => res.data)
       .then(order => {
         if(!order) return undefined;
@@ -64,14 +74,21 @@ export const fetchCart = (userId) =>
 
 export const createCart = (userId, tickets) =>
   dispatch =>
+    userId ?
     axios.post(`/api/orders/users/${userId}`, tickets)
       .then(res => res.data)
       .then(order => {
-        console.log(order,".....order")
         const orderId = order.id
         const tickets = order.tickets
         dispatch(initCart({orderId, tickets}))
-      })
+      }) 
+    : axios.post(`/api/orders/unauthUser`, tickets)
+      .then(res => res.data)
+      .then(order => {
+        const orderId = order.id
+        const tickets = order.tickets
+        dispatch(initCart({orderId, tickets}))
+      }) 
 
 export const addTicketsToOrder = (orderId, tickets) =>
   dispatch =>
