@@ -16,6 +16,24 @@ form div {
   display: inline-block;
 }
 
+button {
+  background-color:rgba(50, 243, 250, 0.9);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 2%;
+  box-shadow: 1px 1px 1px 1px rgba(157, 139, 161, 0.2);
+}
+
+button:disabled {
+  background-color:rgba(16, 78, 63, 0.3);
+  color: grey;
+}
+
 .nav-group{
   display: flex;
   flex-direction: row;
@@ -69,6 +87,14 @@ form div {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+
+.allEvents-headers{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2%;
+  align-items: center;
 }
 
 .eventListing {
