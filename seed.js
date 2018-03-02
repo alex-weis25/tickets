@@ -7,7 +7,8 @@ const {
   Review,
   Ticket,
   OrderLine,
-  Order
+  Order,
+  Permission
 } = require("./server/db/models/index");
 
 function getRandomImage(){
@@ -95,7 +96,7 @@ const users = [
     firstName: "Alex",
     lastName: "Weis",
     creditCard: 123456789,
-    adminStatus: "1",
+    adminStatus: true,
     hasPassword: true,
     googleId: "321"
   },
@@ -105,7 +106,6 @@ const users = [
     firstName: "New",
     lastName: "guy",
     creditCard: 123456781,
-    adminStatus: "2",
     hasPassword: true,
     googleId: "321"
   },
@@ -115,7 +115,6 @@ const users = [
     firstName: "George",
     lastName: "Castanza",
     creditCard: 123456782,
-    adminStatus: "3",
     hasPassword: true,
     googleId: "321"
   },
@@ -125,7 +124,6 @@ const users = [
     firstName: "Jerry",
     lastName: "Seinfeld",
     creditCard: 123456783,
-    adminStatus: "3",
     hasPassword: true,
     googleId: "321"
   },
@@ -135,7 +133,6 @@ const users = [
     firstName: "Tom",
     lastName: "Cruise",
     creditCard: 123456784,
-    adminStatus: "3",
     hasPassword: true,
     googleId: "321"
   },
@@ -145,7 +142,6 @@ const users = [
     firstName: "Michael",
     lastName: "Jackson",
     creditCard: 123456785,
-    adminStatus: "2",
     hasPassword: true,
     googleId: "321"
   },
@@ -155,7 +151,6 @@ const users = [
     firstName: "Kobe",
     lastName: "Bryant",
     creditCard: 123456786,
-    adminStatus: "3",
     hasPassword: true,
     googleId: "321"
   },
@@ -165,7 +160,6 @@ const users = [
     firstName: "Lady",
     lastName: "Gaga",
     creditCard: 123456787,
-    adminStatus: "3",
     hasPassword: true,
     googleId: "321"
   },
@@ -175,7 +169,6 @@ const users = [
     firstName: "Bono",
     lastName: "...",
     creditCard: 123456788,
-    adminStatus: "3",
     hasPassword: true,
     googleId: "321"
   },
@@ -185,7 +178,6 @@ const users = [
     firstName: "Dave",
     lastName: "Grohl",
     creditCard: 223456789,
-    adminStatus: "3",
     hasPassword: true,
     googleId: "321"
   },
@@ -195,7 +187,6 @@ const users = [
     firstName: "Kurt",
     lastName: "Cobain",
     creditCard: 323456789,
-    adminStatus: "3",
     hasPassword: true,
     googleId: "321"
   },
@@ -205,7 +196,6 @@ const users = [
     firstName: "Jimi",
     lastName: "Hendrix",
     creditCard: 423456789,
-    adminStatus: "3",
     hasPassword: true,
     googleId: "321"
   },
@@ -215,7 +205,6 @@ const users = [
     firstName: "Tom",
     lastName: "Petty",
     creditCard: 523456789,
-    adminStatus: "3",
     hasPassword: true,
     googleId: "321"
   },
@@ -225,11 +214,22 @@ const users = [
     firstName: "Bob",
     lastName: "Dylan",
     creditCard: 623456789,
-    adminStatus: "1",
     hasPassword: true,
     googleId: "321"
   }
 ];
+
+const permissions = [
+  {
+    action: 'addEvent'
+  },
+  {
+    action: 'addVenue'
+  },
+  {
+    action: 'addTicket'
+  }
+]
 
 const events = [
   {
@@ -568,7 +568,20 @@ const seed = () =>
     .then(() => Promise.all(tickets.map(ticket => Ticket.create(ticket))))
     .then(() => Promise.all(reviews.map(review => Review.create(review))))
     .then(() => Promise.all(orders.map(order => Order.create(order))))
-    .then(() => Promise.all(orderLines.map(orderLine => OrderLine.create(orderLine))));
+    .then(() => Promise.all(orderLines.map(orderLine => OrderLine.create(orderLine))))
+    .then(() => Promise.all(permissions.map(perm => Permission.create(perm))))
+
+const addPerms = () =>
+  User.findAll({
+    where: {
+      adminStatus: true
+    }
+  })
+  .then(foundUsers => Promise.all(foundUsers.map(user => addPermsToUsers(user))));
+
+const addPermsToUsers = (user) =>
+  Permission.findAll()
+  .then(foundPerms => Promise.all(foundPerms.map(perm => user.addPermission(perm))));
 
 const main = () => {
   console.log("Syncing db...");
@@ -577,6 +590,10 @@ const main = () => {
     .then(() => {
       console.log("Seeding database...");
       return seed();
+    })
+    .then(() => {
+      console.log("Setting Relationships...");
+      return addPerms();
     })
     .then(() => console.log('Finished seeding database!'))
     .catch(err => {
