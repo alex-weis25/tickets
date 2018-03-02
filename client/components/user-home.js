@@ -12,7 +12,7 @@ export const UserHome = props => {
   console.log('password', email, name);
   return (
     <div>
-      <h2>Welcome, {name}!</h2>
+      <h3>Welcome, {name}!</h3>
       {!hasPassword ? (
         <form onSubmit={(evt) => handleSubmit(email, evt)} name={name}>
           <div>
