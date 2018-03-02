@@ -5,6 +5,8 @@ const {Order} = require('../db/models');
 
 module.exports = router
 
+
+//Use case: find all users...?
 router.get('/', (req, res, next) => {
   User.findAll({
     // explicitly select only the id and email fields - even though
@@ -16,7 +18,7 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-//Populate users
+//Populate users => this should be moved to orders or create cart api routes file
 router.get('/cart/:userId', (req, res, next) => {
   Order.scope('showTickets').findOne({ where: {
     userId: req.params.userId,
