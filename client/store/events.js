@@ -5,6 +5,8 @@ import axios from 'axios'
  */
 const GOT_EVENTS = 'GOT_EVENTS'
 const SELECT_EVENT = 'SELECT_EVENT'
+const ADD_EVENT = 'ADD_EVENT'
+const ADD_OR_UPDATE_FAILED = 'ADD_OR_UPDATE_FAILED';
 
 
 /**
@@ -12,7 +14,9 @@ const SELECT_EVENT = 'SELECT_EVENT'
  */
 const initialState = {
   events: [],
-  selectedEvent: {}
+  selectedEvent: {},
+  redirectOnSubmitComplete: false,
+  errorMessages: []
 }
 
 /**
@@ -20,6 +24,8 @@ const initialState = {
  */
 const gotEvents = events => ({type: GOT_EVENTS, events})
 const selectEvent = event => ({type: SELECT_EVENT, event})
+const addEvent = event => ({type: ADD_EVENT, event})
+const addOrUpdateFailed = err => ({type: ADD_OR_UPDATE_FAILED, err})
 
 /**
  * THUNK CREATORS
@@ -38,6 +44,20 @@ dispatch =>
       dispatch(selectEvent(res.data)))
     .catch(err => console.log(err))
 
+export const thunkAddEvent = (event) =>
+  dispatch =>
+    axios.post(`/api/events/`, event)
+      .then(res => {
+        console.log('response in thunkAddEvent', res);
+        if (!res.data.errors){
+          return dispatch(addEvent(res.data))
+        } else {
+          let errorArr = res.data.errors.map(err => err.message)
+          return dispatch(addOrUpdateFailed(errorArr))
+        }
+      })
+      .catch(err => console.log(err))
+
 /**
  * REDUCER
  */
@@ -49,7 +69,16 @@ export default function (state = initialState, action) {
     case SELECT_EVENT:
       return Object.assign({}, state, {selectedEvent: action.event})
 
-      default:
+    case ADD_EVENT:
+      return Object.assign({}, state, {events: [...state.events, action.event],
+        selectedEvent: action.event,
+        redirectOnSubmitComplete: true
+      })
+
+    case ADD_OR_UPDATE_FAILED:
+      return Object.assign({}, state, {errorMessages: action.err})
+
+    default:
       return state
   }
 }
