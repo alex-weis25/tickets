@@ -96,6 +96,7 @@ const users = [
     lastName: "Weis",
     creditCard: 123456789,
     adminStatus: "1",
+    hasPassword: true,
     googleId: "321"
   },
   {
@@ -105,6 +106,7 @@ const users = [
     lastName: "guy",
     creditCard: 123456781,
     adminStatus: "2",
+    hasPassword: true,
     googleId: "321"
   },
   {
@@ -114,6 +116,7 @@ const users = [
     lastName: "Castanza",
     creditCard: 123456782,
     adminStatus: "3",
+    hasPassword: true,
     googleId: "321"
   },
   {
@@ -123,6 +126,7 @@ const users = [
     lastName: "Seinfeld",
     creditCard: 123456783,
     adminStatus: "3",
+    hasPassword: true,
     googleId: "321"
   },
   {
@@ -132,6 +136,7 @@ const users = [
     lastName: "Cruise",
     creditCard: 123456784,
     adminStatus: "3",
+    hasPassword: true,
     googleId: "321"
   },
   {
@@ -141,6 +146,7 @@ const users = [
     lastName: "Jackson",
     creditCard: 123456785,
     adminStatus: "2",
+    hasPassword: true,
     googleId: "321"
   },
   {
@@ -150,6 +156,7 @@ const users = [
     lastName: "Bryant",
     creditCard: 123456786,
     adminStatus: "3",
+    hasPassword: true,
     googleId: "321"
   },
   {
@@ -159,6 +166,7 @@ const users = [
     lastName: "Gaga",
     creditCard: 123456787,
     adminStatus: "3",
+    hasPassword: true,
     googleId: "321"
   },
   {
@@ -168,6 +176,7 @@ const users = [
     lastName: "...",
     creditCard: 123456788,
     adminStatus: "3",
+    hasPassword: true,
     googleId: "321"
   },
   {
@@ -177,6 +186,7 @@ const users = [
     lastName: "Grohl",
     creditCard: 223456789,
     adminStatus: "3",
+    hasPassword: true,
     googleId: "321"
   },
   {
@@ -186,6 +196,7 @@ const users = [
     lastName: "Cobain",
     creditCard: 323456789,
     adminStatus: "3",
+    hasPassword: true,
     googleId: "321"
   },
   {
@@ -195,6 +206,7 @@ const users = [
     lastName: "Hendrix",
     creditCard: 423456789,
     adminStatus: "3",
+    hasPassword: true,
     googleId: "321"
   },
   {
@@ -204,6 +216,7 @@ const users = [
     lastName: "Petty",
     creditCard: 523456789,
     adminStatus: "3",
+    hasPassword: true,
     googleId: "321"
   },
   {
@@ -213,6 +226,7 @@ const users = [
     lastName: "Dylan",
     creditCard: 623456789,
     adminStatus: "1",
+    hasPassword: true,
     googleId: "321"
   }
 ];

@@ -26,6 +26,10 @@ const User = db.define('user', {
     type: Sequelize.INTEGER,
     unique: true
   },
+  hasPassword: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
   adminStatus: {
     type: Sequelize.ENUM,
     values: ['1','2','3']
@@ -76,6 +80,15 @@ const setSaltAndPassword = user => {
     user.password = User.encryptPassword(user.password(), user.salt())
   }
 }
+
+User.addHook('afterUpdate', (user) => {
+  if (user.password){
+    user.update({
+      hasPassword: true
+    })
+  }
+})
+
 
 User.beforeCreate(setSaltAndPassword)
 User.beforeUpdate(setSaltAndPassword)
