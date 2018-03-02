@@ -222,13 +222,13 @@ const users = [
 
 const permissions = [
   {
-    name: 'addEvent'
+    action: 'addEvent'
   },
   {
-    name: 'addVenue'
+    action: 'addVenue'
   },
   {
-    name: 'addTicket'
+    action: 'addTicket'
   }
 ]
 
@@ -570,7 +570,19 @@ const seed = () =>
     .then(() => Promise.all(reviews.map(review => Review.create(review))))
     .then(() => Promise.all(orders.map(order => Order.create(order))))
     .then(() => Promise.all(orderLines.map(orderLine => OrderLine.create(orderLine))))
-    .then(() => Promise.all(permissions.map(perm => Permission.create(perm))));
+    .then(() => Promise.all(permissions.map(perm => Permission.create(perm))))
+
+const addPerms = () =>
+  User.findAll({
+    where: {
+      adminStatus: true
+    }
+  })
+  .then(foundUsers => Promise.all(foundUsers.map(user => addPermsToUsers(user))));
+
+const addPermsToUsers = (user) =>
+  Permission.findAll()
+  .then(foundPerms => Promise.all(foundPerms.map(perm => user.addPermission(perm))));
 
 const main = () => {
   console.log("Syncing db...");
@@ -579,6 +591,10 @@ const main = () => {
     .then(() => {
       console.log("Seeding database...");
       return seed();
+    })
+    .then(() => {
+      console.log("Setting Relationships...");
+      return addPerms();
     })
     .then(() => console.log('Finished seeding database!'))
     .catch(err => {

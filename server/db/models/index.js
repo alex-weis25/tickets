@@ -6,7 +6,7 @@ const Ticket = require('./ticket');
 const OrderLine = require('./orderLine');
 const Order = require('./order');
 const Permission = require('./permission');
-const PermissionRel = require('./PermissionRel');
+const PermissionRel = require('./permissionRel');
 const db = require('../db.js');
 
 /**
@@ -37,8 +37,8 @@ const db = require('../db.js');
  Ticket.belongsToMany(Order, {through: OrderLine }); // Adds
  Review.belongsTo(Event); // adds implicit
  Event.hasMany(Review) // Adds userId to Review
- User.belongsToMany(Permission, {through: PermissionRel}); // Adds
- Ticket.belongsToMany(Order, {through: PermissionRel }); // Adds
+ User.belongsToMany(Permission, {through: PermissionRel }); // Adds
+ Permission.belongsToMany(User, {as: 'permission', through: PermissionRel }); // Adds
 
 
 
