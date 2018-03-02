@@ -17,8 +17,6 @@ export class SingleEvent extends Component {
     this.props.dispatchEvent();
   }
 
-  componentWill 
-
   render() {
     const { selectedEvent } = this.props
     const venue = selectedEvent.venue;
