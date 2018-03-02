@@ -23,12 +23,12 @@ router.get('/:orderId', (req, res, next) => {
 
 // Add tix to order in customer cart...need orderId and ticketId
 router.put('/:orderId', (req, res, next) => {
-  const newTickets = req.body.tickets; //Assume obj w/ order id & arr of tickets
+  const newTickets = req.body; //Assume obj w/ order id & arr of tickets
   const updatedId = req.params.orderId
   const newOrders = newTickets.map(ticket => {
     return OrderLine.build({
       orderId: updatedId,
-      ticketId: ticket
+      ticketId: ticket.id
     })
   })
   return Promise.all(newOrders.map(order => order.save()))
@@ -43,7 +43,7 @@ router.put('/:orderId', (req, res, next) => {
 
 //Creating a new cart for a user
 router.post('/users/:userId', (req, res, next) => {
-  const newTickets = req.body.tickets; //Assume obj w/ order id & arr of tickets
+  const newTickets = req.body; //Assume obj w/ order id & arr of tickets
   const newId = req.params.userId;
   Order.create({userId: newId})
   .then(created => {
@@ -51,7 +51,7 @@ router.post('/users/:userId', (req, res, next) => {
     const newOrders = newTickets.map(ticket => {
       return OrderLine.build({
         orderId: orderId,
-        ticketId: ticket
+        ticketId: ticket.id
       })
     })
     return Promise.all(newOrders.map(order => order.save()))

@@ -31,12 +31,15 @@ export const me = () =>
 export const auth = (userInfo, method) =>
   dispatch =>
     axios.post(`/auth/${method}`, userInfo)
-      .then(res => {
-        dispatch(getUser(res.data))
+      .then(res => res.data)
+      .then(user => {
+        dispatch(getUser(user))
         history.push('/')
+        return user.id
       }, authError => { // rare example: a good use case for parallel (non-catch) error handler
         dispatch(getUser({error: authError}))
       })
+      .then(userId=> dispatch(fetchCart(userId)))
       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
 
 //To set password after google auth sign in
