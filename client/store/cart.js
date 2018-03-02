@@ -20,10 +20,10 @@ const initialState = {
 /**
  * ACTION CREATORS
  */
-const initCart = order => ({type: INIT_CART, order})
-const addTickets = tickets => ({type: ADD_TICKETS, tickets})
-const clearCart = () => ({type: CLEAR_CART, initialState})
-const removeTickets = tickets => ({type: REMOVE_TICKET, tickets})
+const initCart = order => ({type: INIT_CART, order});
+const addTickets = tickets => ({type: ADD_TICKETS, tickets});
+export const clearCart = tickets => ({ type: CLEAR_CART, tickets });
+const removeTickets = tickets => ({type: REMOVE_TICKET, tickets});
 
 /**
  * REDUCER
@@ -31,17 +31,16 @@ const removeTickets = tickets => ({type: REMOVE_TICKET, tickets})
 export default function (state = initialState, action) {
   switch (action.type) {
     case INIT_CART:
-    return action
+    return action.order
     
     case ADD_TICKETS:
     return Object.assign({}, state, {tickets: action.tickets})
     
     case CLEAR_CART:
-    return action;
+    return initialState;
 
     case REMOVE_TICKETS:
     return Object.assign({}, {orderId: state.orderId}, {tickets: action.tickets})
-    //return state.tickets.filter(ticket => ticket.id !== action.ticket.id)
 
     default:
     return state
@@ -53,9 +52,10 @@ export default function (state = initialState, action) {
  */
 export const fetchCart = (userId) =>
   dispatch =>
-    axios.get(`api/cart/${userId}`)
+    axios.get(`api/users/cart/${userId}`)
       .then(res => res.data)
       .then(order => {
+        if(!order) return undefined;
         const orderId = order.id
         const tickets = order.tickets
         dispatch(initCart({orderId, tickets}))
@@ -64,9 +64,10 @@ export const fetchCart = (userId) =>
 
 export const createCart = (userId, tickets) =>
   dispatch =>
-    axios.post(`/api/cart/${userId}`)
+    axios.post(`/api/orders/users/${userId}`, tickets)
       .then(res => res.data)
       .then(order => {
+        console.log(order,".....order")
         const orderId = order.id
         const tickets = order.tickets
         dispatch(initCart({orderId, tickets}))
@@ -82,7 +83,7 @@ export const addTicketsToOrder = (orderId, tickets) =>
 
 export const removeTicketFromOrder = (orderId, tickets) =>
   dispatch =>
-    axios.delete(`/api/orders/${orderId}`, tickets, )
+    axios.delete(`/api/orders/${orderId}`, tickets)
     .then(res => res.data)
     .then(updatedOrder => updatedOrder.tickets)
     .then(tickets => dispatch(removeTickets(tickets)))
