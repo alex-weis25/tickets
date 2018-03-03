@@ -41,11 +41,31 @@ router.put('/:orderId', (req, res, next) => {
   .catch(next);
 })
 
+//remove tix from the orderline
+router.delete('/:orderId', (req, res, next) => {
+  const removeTickets = req.body; //Assume obj w/ order id & arr of tickets
+  const orderId = req.params.orderId
+  return Promise.all(removeTickets.map(ticket => {
+    return OrderLine.destroy({
+      Where:{
+        orderId: updatedId,
+        ticketId: ticket.id
+      }
+    })
+  }))
+  .then(_ => {
+    Order.scope('showTickets').findById(orderId)
+    .then(found => {
+      res.status(200).json(found);
+    })
+  })
+  .catch(next);
+})
+
 //Creating a new cart for a user
 router.post('/users/:userId', (req, res, next) => {
   const newTickets = req.body; //Assume obj w/ order id & arr of tickets
   const newId = req.params.userId;
-  //console.log(req.sessions.passport.userId)
   Order.create({userId: newId})
   .then(created => {
     const orderId = created.id;
@@ -66,34 +86,10 @@ router.post('/users/:userId', (req, res, next) => {
   .catch(next);
 })
 
-//Creating a new cart for a user
-router.post('/unauthUser', (req, res, next) => {
-  const newTickets = req.body; //Assume obj w/ order id & arr of tickets
-  const newId = req.sessionID;
-  //console.log(req.sessions.passport.userId)
-  Order.create({sessionId: newId})
-  .then(created => {
-    const orderId = created.id;
-    const newOrders = newTickets.map(ticket => {
-      return OrderLine.build({
-        orderId: orderId,
-        ticketId: ticket.id
-      })
-    })
-    return Promise.all(newOrders.map(order => order.save()))
-    .then(_ => {
-      Order.scope('showTickets').findById(orderId)
-      .then(found => {
-        res.status(200).json(found);
-      })
-    })
-  })
-  .catch(next);
-})
-
-router.get('/unauthUser', (req, res, next) => {
+//Populate users => this should be moved to orders or create cart api routes file
+router.get('/cart/:userId', (req, res, next) => {
   Order.scope('showTickets').findOne({ where: {
-    sessionId: req.sessionID,
+    userId: req.params.userId,
     status: 'in-cart'
   }})
   .then(orderList => {
@@ -101,7 +97,6 @@ router.get('/unauthUser', (req, res, next) => {
   })
   .catch(next);
 })
-
 
 //User purchases tickets, changes order status and adds order Id to tickets. Need to remove other orderLines with same ticketIds and different orderIds
 router.put('/purchase/:orderId', (req, res, next) => {

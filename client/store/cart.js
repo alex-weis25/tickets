@@ -53,7 +53,7 @@ export default function reducer(state = initialState, action) {
 export const fetchCart = (userId) =>
   dispatch =>
     userId ?
-    axios.get(`api/users/cart/${userId}`)
+    axios.get(`api/orders/cart/${userId}`)
       .then(res => res.data)
       .then(order => {
         if(!order) return undefined;
@@ -62,13 +62,11 @@ export const fetchCart = (userId) =>
         dispatch(initCart({orderId, tickets}))
       })
       .catch(err => console.log(err))
-    : axios.get(`/api/orders/unauthUser`)
+    : axios.get(`/api/session`)
       .then(res => res.data)
-      .then(order => {
-        if(!order) return undefined;
-        const orderId = order.id
-        const tickets = order.tickets
-        dispatch(initCart({orderId, tickets}))
+      .then(cart => {
+        if(!cart) return undefined;
+        dispatch(initCart(cart))
       })
       .catch(err => console.log(err))
 
@@ -81,35 +79,40 @@ export const createCart = (userId, tickets) =>
         const orderId = order.id
         const tickets = order.tickets
         dispatch(initCart({orderId, tickets}))
-      }) 
-    : axios.post(`/api/orders/unauthUser`, tickets)
+      })
+      .catch(err => console.log(err))
+    : axios.post(`/api/session`, tickets)
       .then(res => res.data)
-      .then(order => {
-        const orderId = order.id
-        const tickets = order.tickets
-        dispatch(initCart({orderId, tickets}))
-      }) 
+      .then(cart => {
+        if(!cart) return undefined
+        dispatch(initCart(cart))
+      })
+      .catch(err => console.log(err))
 
 export const addTicketsToOrder = (orderId, tickets) =>
   dispatch =>
-    axios.put(`/api/orders/${orderId}`, tickets)
-    .then(res => res.data)
-    .then(updatedOrder => updatedOrder.tickets)
-    .then(tickets => dispatch(addTickets(tickets)))
-    .catch(err => console.log(err))
+    orderID 
+      ? axios.put(`/api/orders/${orderId}`, tickets)
+      : axios.put(`/api/session`, tickets)
+        .then(res => res.data)
+        .then(updatedOrder => updatedOrder.tickets)
+        .then(tickets => dispatch(addTickets(tickets)))
+        .catch(err => console.log(err))
 
 export const removeTicketFromOrder = (orderId, tickets) =>
   dispatch =>
-    axios.delete(`/api/orders/${orderId}`, tickets)
-    .then(res => res.data)
-    .then(updatedOrder => updatedOrder.tickets)
-    .then(tickets => dispatch(removeTickets(tickets)))
-    .catch(err => console.log(err))
-
+    orderId 
+      ? axios.delete(`/api/orders/${orderId}`, tickets)
+      : axios.delete(`/api/session`, tickets)
+        .then(res => res.data)
+        .then(updatedOrder => updatedOrder.tickets)
+        .then(tickets => dispatch(removeTickets(tickets)))
+        .catch(err => console.log(err))
 
 export const submitOrder = (orderId) =>
   dispatch =>
-    axios.put(`/api/orders/purchase/${orderId}`)
-    .then(() => dispatch(clearCart()))
-    .catch(err => console.log(err))
-
+    orderId
+      ? axios.put(`/api/orders/purchase/${orderId}`)
+      : axios.put(`/api/session/purchase`)
+        .then(() => dispatch(clearCart()))
+        .catch(err => console.log(err))

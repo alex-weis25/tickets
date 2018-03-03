@@ -54,7 +54,9 @@ const createApp = () => {
   app.use(passport.session())
 
   app.use(function (req, res, next) {
-    console.log('session', req.sessionID);
+    req.session.cart = req.session.cart || 
+      { tickets: [], orderId: null }
+      console.log('session.cart', req.session.cart);
     next();
   });
 
