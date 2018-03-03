@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 //var ReactScriptLoaderMixin = require('react-script-loader').ReactScriptLoaderMixin;
 import Script from 'react-load-script'
 import {CardElement} from 'react-stripe-elements';
+import '../../secrets';
 const ReactDOMServer = require('react-dom/server');
 //import StripeCardElement from './StripeCardElement'
 //import stripe from 'stripe'
@@ -9,6 +10,7 @@ const ReactDOMServer = require('react-dom/server');
 const HtmlToReact = require('html-to-react');
 const HtmlToReactParser = require('html-to-react').Parser;
 const htmlToReactParser = new HtmlToReactParser();
+
 //const reactElement = htmlToReactParser.parse(htmlInput);
 
 
@@ -33,9 +35,6 @@ export default class CheckoutForm extends Component{
     event.preventDefault();
     this.setState({ submitDisabled: true, paymentError: null });
     console.log('submitted form');
-    console.log('Stripe in on submit', Stripe)
-    console.log('Stripe dot card', Stripe.card)
-    console.log('Stripe dot card dot createtoken', Stripe.card, Stripe.card.createToken)
     // send form here
     Stripe.card.createToken(event.target,
     function(status, response){
@@ -55,9 +54,8 @@ export default class CheckoutForm extends Component{
     if (!this.state.token) {
       // Put your publishable key here
       //this.stripe = Stripe('pk_test_hIw9csAxy5dtOikdK1WQUVXp');
-      this.stripe = Stripe.setPublishableKey('pk_test_hIw9csAxy5dtOikdK1WQUVXp');
-      //this.elements = this.stripe.elements();
-      //Stripe.setPublishableKey('pk_test_hIw9csAxy5dtOikdK1WQUVXp');
+      console.log('process vars: ', process.env)
+      Stripe.setPublishableKey(process.env.STRIPE_CLIENT_ID);
       console.log('STRIPE: ', Stripe);
       this.setState({ stripeLoading: false, stripeLoadingError: false });
       // let card = this.elements.create('card');
