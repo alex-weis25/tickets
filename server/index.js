@@ -24,7 +24,9 @@ module.exports = app
 if (process.env.NODE_ENV !== 'production') require('../secrets')
 
 // passport registration
-passport.serializeUser((user, done) => done(null, user.id))
+passport.serializeUser((user, done) =>{
+  done(null, user.id)
+})
 passport.deserializeUser((id, done) =>
   db.models.user.findById(id)
     .then(user => done(null, user))
@@ -50,6 +52,13 @@ const createApp = () => {
   }))
   app.use(passport.initialize())
   app.use(passport.session())
+
+  app.use(function (req, res, next) {
+    req.session.cart = req.session.cart || 
+      { tickets: [], orderId: null }
+      console.log('session.cart', req.session.cart);
+    next();
+  });
 
   // auth and api routes
   app.use('/auth', require('./auth'))

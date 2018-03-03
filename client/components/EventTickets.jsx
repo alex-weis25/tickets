@@ -24,7 +24,7 @@ export class EventTickets extends Component {
     return (
       <div>
         {tickets.length ? 
-          <form onSubmit={(event) => checkCart(userId, orderId, event, selectedTickets)} className="tickets-display">
+          <form onSubmit={(event) => checkCart(userId, orderId, event, selectedTickets, cartTickets)} className="tickets-display">
           <label>Available tickets:</label>
           {tickets &&
             tickets.map(ticket => {
@@ -59,9 +59,9 @@ const MapDispatch = (dispatch, ownProps) => ({
     event.target.checked ? dispatch(addSelectedTickets(ticket)) : dispatch(removeSelectedTickets(ticketId))
   },
 
-  checkCart(userId, orderId, event, selectedTickets){
+  checkCart(userId, orderId, event, selectedTickets, cartTickets){
     event.preventDefault();
-    orderId ? dispatch(addTicketsToOrder(orderId, selectedTickets)) : dispatch(createCart(userId, selectedTickets))
+    cartTickets ? dispatch(addTicketsToOrder(orderId, selectedTickets)) : dispatch(createCart(userId, selectedTickets))
     dispatch(clearSelectedTickets())
   }
 })
