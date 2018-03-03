@@ -31,8 +31,8 @@ const User = db.define('user', {
     defaultValue: false
   },
   adminStatus: {
-    type: Sequelize.ENUM,
-    values: ['1','2','3']
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   },
   salt: {
     type: Sequelize.STRING,
@@ -44,6 +44,16 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  }
+}, {
+  scopes: {
+    showPermissions: () => ({
+      include: [{
+        model: db.model('permission'),
+        as: 'permissions',
+        required: false
+      }]
+    })
   }
 })
 

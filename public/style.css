@@ -67,10 +67,11 @@ button:disabled {
   justify-content: center;
   align-items: center;
   font-size: 1.1em;
-  flex: 1;
+  flex: 2.0;
 }
 
 .nav-group nav div {
+  align-items: center;
   display: flex;
   width: 100%;
   justify-content: space-around;
