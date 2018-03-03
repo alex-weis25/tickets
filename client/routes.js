@@ -4,9 +4,10 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import AllEvents from './components/AllEvents.jsx'
-import {me, fetchEvents} from './store'
+import {me, fetchEvents, fetchCart} from './store'
 import SingleEvent from './components/SingleEvent';
 import AddEvent from './components/AddEvent.jsx';
+
 
 /**
  * COMPONENT
@@ -57,6 +58,7 @@ const mapDispatch = (dispatch) => {
     loadInitialData () {
       dispatch(me())
       dispatch(fetchEvents())
+      dispatch(fetchCart())
     }
   }
 }

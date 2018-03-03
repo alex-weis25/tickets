@@ -1,6 +1,6 @@
 import axios from 'axios'
 import history from '../history'
-import { fetchCart } from './cart'
+import {fetchCart} from './cart'
 /**
  * ACTION TYPES
  */
@@ -26,8 +26,6 @@ export const me = () =>
     axios.get('/auth/me')
       .then(res => res.data)
       .then(user => {
-        //if(user) dispatch(getUser(user));
-
         dispatch(getUser(user || defaultUser))
       })
       .catch(err => console.log(err))
@@ -43,7 +41,7 @@ export const auth = (userInfo, method) =>
       }, authError => { // rare example: a good use case for parallel (non-catch) error handler
         dispatch(getUser({error: authError}))
       })
-      .then(userId => dispatch(fetchCart(userId)))
+      .then(userId=> dispatch(fetchCart(userId)))
       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
 
 //To set password after google auth sign in
