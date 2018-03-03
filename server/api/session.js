@@ -15,7 +15,7 @@ router.post('/', (req, res, next) => {
 router.put('/', (req, res, next) => {
     let tickets = req.session.cart.tickets
     const addTickets = req.body
-    tickets.push(addTickets)
+    tickets = [...tickets, ...addTickets]
     req.session.cart.tickets = tickets
     res.status(200).json(req.session.cart)
 });

@@ -91,7 +91,7 @@ export const createCart = (userId, tickets) =>
 
 export const addTicketsToOrder = (orderId, tickets) =>
   dispatch =>
-    orderID 
+    orderId 
       ? axios.put(`/api/orders/${orderId}`, tickets)
       : axios.put(`/api/session`, tickets)
         .then(res => res.data)
