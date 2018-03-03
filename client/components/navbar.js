@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout, clearCart} from '../store'
+import Ticket from 'react-icons/lib/fa/ticket'
+
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div className="nav-group">
@@ -22,8 +24,11 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
+
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
+          <Link to="/cart"><Ticket /> My Tickets </Link>
+
         </div>
       )}
     </nav>

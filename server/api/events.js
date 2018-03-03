@@ -47,8 +47,8 @@ router.delete('/:eventId', (req, res, next) => {
 })
 
 //Create event
-router.post('/', permChecker, (req, res, next) => {
-  Event.create(req.body.data)
+router.post('/', (req, res, next) => permChecker(req, res, next, 'addEvent'), (req, res, next) => {
+  Event.create(req.body)
   .then(created => {
     return Event.scope('showDetails').findById(created.id)
   })

@@ -17,15 +17,12 @@ class AddEvent extends Component{
     const date = event.target.date.value.split('-');
     const time = event.target.time.value;
     const createBody = {
-      action: 'addEvent',
-      data: {
-        name: this.nullIfBlank(event.target.name.value),
-        date: new Date(date.join(' ') + ' ' + time),
-        duration: event.target.duration.value,
-        description: this.nullIfBlank(event.target.description.value),
-        imgUrl: this.nullIfBlank(event.target.imgUrl.value),
-        venueId: event.target.venueId.value
-      }
+      name: this.nullIfBlank(event.target.name.value),
+      date: new Date(date.join(' ') + ' ' + time),
+      duration: event.target.duration.value,
+      description: this.nullIfBlank(event.target.description.value),
+      imgUrl: this.nullIfBlank(event.target.imgUrl.value),
+      venueId: event.target.venueId.value
     }
     this.props.thunkAddEvent(createBody);
   }

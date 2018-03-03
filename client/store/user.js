@@ -43,7 +43,7 @@ export const auth = (userInfo, method) =>
       }, authError => { // rare example: a good use case for parallel (non-catch) error handler
         dispatch(getUser({error: authError}))
       })
-      .then(userId=> dispatch(fetchCart(userId)))
+      .then(userId => dispatch(fetchCart(userId)))
       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
 
 //To set password after google auth sign in
