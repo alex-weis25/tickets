@@ -7,7 +7,8 @@ import AllEvents from './components/AllEvents.jsx'
 import {me, fetchEvents, fetchCart} from './store'
 import SingleEvent from './components/SingleEvent';
 import AddEvent from './components/AddEvent.jsx';
-
+import AllTickets from './components/AllTickets.jsx';
+import TicketListingItem from './components/TicketListingItem.jsx';
 
 /**
  * COMPONENT
@@ -28,6 +29,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route exact path="/event/add" component={AddEvent} />
         <Route path="/event/:id" component={SingleEvent} />
+        <Route path="/cart" component={TicketListingItem} />
         {
           isLoggedIn &&
             <Switch>
