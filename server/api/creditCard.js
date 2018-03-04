@@ -16,7 +16,10 @@ router.post('/', (req, res, next) => {
     // asynchronously called
     console.error('error: ', err)
     console.log('charge: ', charge);
-    res.send(200)
+    if(err){
+      res.status(400).json(err);
+    } else {
+      res.status(200).json(charge);
+    }
   });
-
 })
