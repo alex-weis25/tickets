@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Script from 'react-load-script'
 import '../../secrets';
-//const ReactDOMServer = require('react-dom/server');
 import axios from 'axios';
 
 
