@@ -1,38 +1,38 @@
-mport React, { Component } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Route, Switch } from "react-router-dom";
+
 
 /**
  * COMPONENT
  */
 
-export class TicketListingItem extends Components{
+export class TicketListingItem extends Component{
   render(){
 
-    const {event} = props
-    const venueName = event.venue ? event.venue.name : '';
-    const tickets = event.tickets ? event.tickets : [];
+    const { cartTickets, orderId, theEvents } = this.props
+    const eventList = this.returnSortedEvents(cartTickets)
+    // add message to client: no tickets in cart
+    if (!theEvents) return <div />
     return (
-      <div className="eventListing">
-        <Link to={`event/${event.id}`}>
-          <img src={event.imgUrl} />
-          <div className="eventInfo">
-            <div className="eventNameVenue">
-              <h2>{event.name}</h2>
-              <h4> at the </h4>
-              <h2>{venueName}</h2>
-            </div>
 
-            {
-              tickets.length ?
-
-              (<div className="eventTickets">
-                {event.tickets.length} Tickets Remaining
-              </div>) :
-              ( <div className="SoldOut"> SOLD OUT! </div>)
-            }
-          </div>
-        </Link>
+      <div className="cartEventListing">
+        {eventList.map(eventId => {
+          let ticketEvent = theEvents.find(event => event.id === eventId)
+          return (
+            <div className="singleEventListing" key={eventId}>
+              <div className="eventDetails">
+                <div className="eventDate">
+                  <div className="eventInformation">
+                  <h2>Event Name: {ticketEvent.name}</h2>
+                    <img src={ticketEvent.imgUrl} />
+                    <h3>Event Date: {ticketEvent.date}</h3>
+                    <h4>Event Description: {ticketEvent.description}</h4>
+                  </div>
+                </div>
+              </div>
+          </div>)
+        })}
       </div>
     )
   }
@@ -52,12 +52,13 @@ export class TicketListingItem extends Components{
   }
 }
 
-const MapState = ({ events }) => {
-  const selectedEvent = events.selectedEvent;
-  return { selectedEvent }
+const MapState = ({ cart, events }) => {
+  const cartTickets = cart.tickets;
+  const orderId = cart.orderId
+  const theEvents = events.events
+  return { cartTickets, orderId, theEvents }
 };
-const MapDispatch = (dispatch, ownProps) => ({
-  dispatchEvent: () => dispatch(fetchEvent(+ownProps.match.params.id)),
-})
 
-export default withRouter(connect(MapState, MapDispatch)(SingleEvent));
+const MapDispatch = null
+
+export default withRouter(connect(MapState, MapDispatch)(TicketListingItem));
