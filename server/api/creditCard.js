@@ -13,7 +13,11 @@ router.post('/', (req, res, next) => {
   stripe.charges.create({
     amount: req.body.cartTotal * 100,
     currency: "usd",
-    description: "Example charge",
+    description: "Tickets",
+    metadata: {order_id: req.body.orderId,
+      customer_name: req.body.user.firstName + ' ' + req.body.user.lastName,
+      customer_email: req.body.user.email
+    },
     source: token,
   }, function(err, charge) {
     // asynchronously called
