@@ -5,6 +5,7 @@ router.use('/users', require('./users'))
 router.use('/events', require('./events'));
 router.use('/venues', require('./venues'))
 router.use('/orders', require('./orders'))
+router.use('/creditAuth', require('./creditCard'))
 router.use('/session', require('./session'))
 
 // router.use('/orderlines', require('./orderlines'))

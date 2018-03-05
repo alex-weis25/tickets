@@ -7,6 +7,7 @@ import AllEvents from './components/AllEvents.jsx'
 import {me, fetchEvents, fetchCart} from './store'
 import SingleEvent from './components/SingleEvent';
 import AddEvent from './components/AddEvent.jsx';
+import PaymentForm from './payments/checkoutForm';
 import Cart from './components/Cart.jsx'
 
 /**
@@ -29,6 +30,7 @@ class Routes extends Component {
         <Route path="/cart" component={Cart}/>
         <Route exact path="/event/add" component={AddEvent} />
         <Route path="/event/:id" component={SingleEvent} />
+        <Route exact path="/checkout" component={PaymentForm} />
         {
           isLoggedIn &&
             <Switch>
