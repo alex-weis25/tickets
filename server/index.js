@@ -56,7 +56,6 @@ const createApp = () => {
   app.use(function (req, res, next) {
     req.session.cart = req.session.cart || 
       { tickets: [], orderId: null }
-      console.log('session.cart', req.session.cart);
     next();
   });
 
