@@ -32,13 +32,16 @@ describe('thunk creators', () => {
   })
 
   describe('fetchEvents', () => {
-    xit('eventually dispatches the GOT_EVENTS action', () => {
+    it('eventually dispatches the GOT_EVENTS action', () => {
       // pending: add multiple events below
-      const fakeEvents = { name: 'Three 6 Mafia'}
+      const fakeEvents = [
+        {name: 'Three 6 Mafia'}
+      ]
       mockAxios.onGet('/api/events').replyOnce(200, fakeEvents)
       return store.dispatch(fetchEvents())
         .then(() => {
           const actions = store.getActions()
+          console.log('fetchevents action', actions);
           expect(actions[0].type).to.be.equal('GOT_EVENTS')
           expect(actions[0].events).to.eql(fakeEvents)
         })
@@ -52,8 +55,9 @@ describe('thunk creators', () => {
       return store.dispatch(fetchEvent())
         .then(() => {
           const actions = store.getActions()
+          console.log('fetchevent action', actions);
           expect(actions[0].type).to.be.equal('SELECT_EVENT')
-          expect(actions[0].selectedEvent).to.eql(fakeEvent)
+          expect(actions[0].events).to.eql(fakeEvent)
         })
     })
   })

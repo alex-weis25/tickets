@@ -12,8 +12,7 @@ describe('Venue routes', () => {
   })
 
   describe('/api/venues/', () => {
-    const venue =
-      {
+    const venue = {
         name: "Madison Square Garden",
         streetAddress: "4 Pennsylvania Plaza",
         city: "New York",

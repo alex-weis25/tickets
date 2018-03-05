@@ -88,6 +88,7 @@ button:disabled {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
+  background: aquamarine;
 }
 
 .allEvents-headers{

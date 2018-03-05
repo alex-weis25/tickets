@@ -48,7 +48,7 @@ export const thunkAddEvent = (event) =>
   dispatch =>
     axios.post(`/api/events/`, event)
       .then(res => {
-        console.log('response in thunkAddEvent', res);
+        // console.log('response in thunkAddEvent', res);
         if (!res.data.errors){
           return dispatch(addEvent(res.data))
         } else {
