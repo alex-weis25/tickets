@@ -23,7 +23,7 @@ export class EventTickets extends Component {
     })
     return (
       <div>
-        {tickets.length ? 
+        {tickets.length ?
           <form onSubmit={(event) => checkCart(userId, orderId, event, selectedTickets, cartTickets)} className="tickets-display">
           <label>Available tickets:</label>
           {tickets &&
@@ -38,8 +38,8 @@ export class EventTickets extends Component {
               );
             })}
           <button type="submit">Add to cart</button>
-        </form> 
-        : <big>No tickets are available</big>} 
+        </form>
+        : <big>No tickets are available</big>}
       </div>
     );
   }
