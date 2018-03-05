@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Route, Switch } from "react-router-dom";
+import moment from 'moment';
 
 //import thunk to be mapped
 import { fetchEvent } from "../store/events.js";
@@ -23,15 +24,21 @@ export class SingleEvent extends Component {
     const event = selectedEvent;
     console.log('props: ', this.props);
     return (
-      <div>
+      <div className="single-event">
+        <img src={event.imgUrl} />
         <div className="single-title">
-          <h1>{event.name}</h1>
-          <img src={event.imgUrl} />
-          <h3>{event.date}</h3>
-          {venue && <h3>{venue.name}</h3>}
-          <p>{event.description}</p>
+          <div>
+            <h1>{event.name}</h1>
+          </div>
+          <div>
+            <h3>{moment(event.date).format('MMMM Do YYYY')} at {moment(event.date).format('h:mm A')}</h3>
+            {venue && <h3>{venue.name}</h3>}
+          </div>
         </div>
+        <div className="buyTickets">
+          <h4>{event.description}</h4>
           <EventTickets />
+        </div>
       </div>
     );
   }
