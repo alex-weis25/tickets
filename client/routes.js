@@ -8,7 +8,6 @@ import {me, fetchEvents} from './store'
 import SingleEvent from './components/SingleEvent';
 import AddEvent from './components/AddEvent.jsx';
 import PaymentForm from './payments/checkoutForm';
-import MyStoreCheckout from './payments/MyStoreCheckout';
 
 /**
  * COMPONENT
