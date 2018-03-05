@@ -34,7 +34,7 @@ const venues = [
     state: "NY",
     zip: "10001",
     description:
-      "Madison Square Garden, often called 'MSG' or simply 'The Garden', is a multi-purpose indoor arena in the New York City borough of Manhattan.",
+      "Barclays Center is a multi-purpose indoor arena in the New York City borough of Brooklyn. The arena is part of a $4.9 billion future business and residential complex now known as Pacific Park.",
     imageUrl: getRandomImage()
   },
   {
@@ -44,7 +44,7 @@ const venues = [
     state: "NY",
     zip: "10001",
     description:
-      "Madison Square Garden, often called 'MSG' or simply 'The Garden', is a multi-purpose indoor arena in the New York City borough of Manhattan.",
+      "MetLife Stadium is an American sports stadium located in East Rutherford, New Jersey. It is part of the Meadowlands Sports Complex and serves as the home stadium for two National Football League franchises: the New York Giants and the New York Jets.",
     imageUrl: getRandomImage()
   },
   {
@@ -54,7 +54,7 @@ const venues = [
     state: "NY",
     zip: "10001",
     description:
-      "Madison Square Garden, often called 'MSG' or simply 'The Garden', is a multi-purpose indoor arena in the New York City borough of Manhattan.",
+      "The Bowery Ballroom is a music venue in the Bowery section of Manhattan, New York City. The structure, at 6 Delancey Street, was built just before the Wall Street Crash in 1929.",
     imageUrl: getRandomImage()
   },
   {
@@ -64,7 +64,7 @@ const venues = [
     state: "NY",
     zip: "10001",
     description:
-      "Madison Square Garden, often called 'MSG' or simply 'The Garden', is a multi-purpose indoor arena in the New York City borough of Manhattan.",
+      "The Apollo Theater at 253 West 125th Street between Adam Clayton Powell Jr. Boulevard and Frederick Douglass Boulevard in the Harlem neighborhood of Manhattan, New York City is a music hall which is a noted venue for African-American performers.",
     imageUrl: getRandomImage()
   },
   {
@@ -74,7 +74,7 @@ const venues = [
     state: "NY",
     zip: "10001",
     description:
-      "Madison Square Garden, often called 'MSG' or simply 'The Garden', is a multi-purpose indoor arena in the New York City borough of Manhattan.",
+      "The Comedy Cellar is a comedy club in Manhattan where many top New York comedians perform. It was founded in 1982 by then standup comedian, and current television writer/producer Bill Grundfest.",
     imageUrl: getRandomImage()
   },
   {
@@ -84,7 +84,7 @@ const venues = [
     state: "NY",
     zip: "10001",
     description:
-      "Madison Square Garden, often called 'MSG' or simply 'The Garden', is a multi-purpose indoor arena in the New York City borough of Manhattan.",
+      "Upscale, intimate jazz club in Lincoln Center serving Southern-accented fare & themed cocktails.",
     imageUrl: getRandomImage()
   }
 ];
@@ -262,7 +262,7 @@ const events = [
     date: new Date(2018, 6, 18, 9, 30),
     duration: 2,
     description:
-      "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
+      "Come see a funny show, laugh a little.",
     venueId: 4,
     imgUrl: getRandomImage()
   },
@@ -271,7 +271,7 @@ const events = [
     date: new Date(2018, 6, 18, 9, 30),
     duration: 2,
     description:
-      "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
+      "Food, its a yummy show.",
     venueId: 5,
     imgUrl: getRandomImage()
   },
@@ -289,7 +289,7 @@ const events = [
     date: new Date(2018, 6, 18, 9, 30),
     duration: 2,
     description:
-      "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
+      "Sexy show with some smooth jazz.",
     venueId: 7,
     imgUrl: getRandomImage()
   },
@@ -298,7 +298,7 @@ const events = [
     date: new Date(2018, 6, 18, 9, 30),
     duration: 2,
     description:
-      "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
+      "Open Mic, amateur hour.",
     venueId: 6,
     imgUrl: getRandomImage()
   },
@@ -307,7 +307,7 @@ const events = [
     date: new Date(2018, 6, 18, 9, 30),
     duration: 2,
     description:
-      "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
+      "Monster trucks DEMO- smashing and bashing.",
     venueId: 2,
     imgUrl: getRandomImage()
   },
@@ -316,7 +316,7 @@ const events = [
     date: new Date(2018, 6, 18, 9, 30),
     duration: 2,
     description:
-      "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
+      "Catch up on League news.",
     venueId: 4,
     imgUrl: getRandomImage()
   }

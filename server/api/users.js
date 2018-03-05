@@ -18,14 +18,15 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-//Populate users => this should be moved to orders or create cart api routes file
-router.get('/cart/:userId', (req, res, next) => {
-  Order.scope('showTickets').findOne({ where: {
-    userId: req.params.userId,
-    status: 'in-cart'
-  }})
-  .then(orderList => {
-    res.json(orderList)
-  })
-  .catch(next);
-})
+// //Populate users => this should be moved to orders or create cart api routes file
+// router.get('/cart/:userId', (req, res, next) => {
+//   Order.scope('showTickets').findOne({ where: {
+//     userId: req.params.userId,
+//     status: 'in-cart'
+//   }})
+//   .then(orderList => {
+//     res.json(orderList)
+//   })
+//   .catch(next);
+// })
+

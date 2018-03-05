@@ -4,10 +4,11 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import AllEvents from './components/AllEvents.jsx'
-import {me, fetchEvents} from './store'
+import {me, fetchEvents, fetchCart} from './store'
 import SingleEvent from './components/SingleEvent';
 import AddEvent from './components/AddEvent.jsx';
 import PaymentForm from './payments/checkoutForm';
+import Cart from './components/Cart.jsx'
 
 /**
  * COMPONENT
@@ -26,6 +27,7 @@ class Routes extends Component {
         <Route exact path="/" component={AllEvents} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/cart" component={Cart}/>
         <Route exact path="/event/add" component={AddEvent} />
         <Route path="/event/:id" component={SingleEvent} />
         <Route exact path="/checkout" component={PaymentForm} />
@@ -59,6 +61,7 @@ const mapDispatch = (dispatch) => {
     loadInitialData () {
       dispatch(me())
       dispatch(fetchEvents())
+      dispatch(fetchCart())
     }
   }
 }
