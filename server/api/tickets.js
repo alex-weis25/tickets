@@ -19,7 +19,7 @@ router.get('/:userId', (req, res, next) => {
     }})
   })
   .then(ols => {
-    console.log("olderlines: ", ols)
+    // console.log("olderlines: ", ols)
     res.json(ols);
   })
   .catch(next);

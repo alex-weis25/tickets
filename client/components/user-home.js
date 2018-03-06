@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { authPassword } from "../store";
 import axios from "axios";
-import UserReview from './reviews/userReview'
+import UserReview from "./reviews/userReview";
+// import AddReview from "./reviews/addReview";
 
 /**
  * COMPONENT
@@ -55,8 +56,7 @@ export class UserHome extends Component {
           return val;
         }
       });
-      // const today = new Date();
-
+    // const today = new Date();
 
     return (
       <div>
@@ -75,7 +75,9 @@ export class UserHome extends Component {
             <p>Please submit a password to complete registration.</p>
           </form>
         ) : (
-          <UserReview myEvents={myEvents} myTickets={ticketIds} />
+          <div>
+            <UserReview myEvents={myEvents} myTickets={ticketIds} />
+          </div>
         )}
       </div>
     );
@@ -122,7 +124,6 @@ export default connect(mapState, mapDispatch)(UserHome);
 UserHome.propTypes = {
   email: PropTypes.string
 };
-
 
 // Old JSX
 // <div>

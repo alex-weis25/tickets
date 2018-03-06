@@ -9,9 +9,24 @@ import { addSelectedTickets, clearSelectedTickets, removeSelectedTickets } from 
 import { addTicketsToOrder, createCart } from '../store/cart.js';
 
 export class EventTickets extends Component {
+  constructor(props) {
+    super(props)
+    this.isChecked = this.isChecked.bind(this);
+  }
+
 
   componentWillUnmount(){
     this.props.unmountClear()
+  }
+
+  isChecked(event){
+    const parentDiv = event.target.parentNode.parentNode;
+    const classes = [...parentDiv.classList]
+    if(classes.find(htmlClass => htmlClass === 'selected')){
+      parentDiv.classList.remove("selected")
+    } else {
+      parentDiv.classList.add("selected")
+    }
   }
 
   render() {
@@ -29,27 +44,28 @@ export class EventTickets extends Component {
       <div>
         {tickets.length ?
           <form onSubmit={(event) => checkCart(user, orderId, event, selectedTickets, cartTickets)} className="tickets-display">
-          <label>Available tickets:</label>
-          {tickets &&
-            tickets.map(ticket => {
-              return (
-                <div key={ticket.id} className="individual-ticket">
-                  <li>
-                    {ticket.seat} ${ticket.price}
-                    <input value={ticket.id}  onChange={(event) => this.props.handleChange(event, tickets)} type="checkbox" name="ticket" />
-                  </li>
-                </div>
-              );
-            })}
-          <button type="submit">Add to cart</button>
-        </form>
+            <div className="ticket-items">
+              {tickets &&
+                tickets.map(ticket => {
+                  return (
+                    <div key={ticket.id} className="individual-ticket">
+                      <li>
+                        <h4>SEAT: {ticket.seat}   PRICE: ${ticket.price}</h4>
+                        <input value={ticket.id} onClick={this.isChecked} onChange={(event) => this.props.handleChange(event, tickets)} type="checkbox" name="ticket" />
+                      </li>
+                    </div>
+                  );
+                })}
+            </div>
+            <button type="submit">Add to cart</button>
+          </form>
         : <big>No tickets are available</big>}
       </div>
     );
   }
 }
 
-const MapState = ({ events, user , cart, selectedTickets }) => {
+const MapState = ({ events, user, cart, selectedTickets }) => {
   const cartTickets = cart.tickets
   const eventTickets = events.selectedEvent.tickets;
   const orderId = cart.orderId;
