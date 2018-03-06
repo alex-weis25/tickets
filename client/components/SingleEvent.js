@@ -14,12 +14,12 @@ export class SingleEvent extends Component {
     super(props);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.dispatchEvent();
   }
 
   render() {
-    const { selectedEvent } = this.props
+    const { selectedEvent, users } = this.props
     const venue = selectedEvent.venue;
     const event = selectedEvent;
     const today = new Date();
@@ -36,18 +36,18 @@ export class SingleEvent extends Component {
           <p>{event.description}</p>
         </div>
           {
-           eventDate < today ?
+           eventDate > today ?
             (<div><EventTickets /></div>) :
-          (<EventReviews props={selectedEvent} />)
+          (<EventReviews props={selectedEvent} users={users} />)
           }
       </div>
     );
   }
 }
 
-const MapState = ({ events }) => {
+const MapState = ({ events, users }) => {
   const selectedEvent = events.selectedEvent;
-  return { selectedEvent }
+  return { selectedEvent, users }
 };
 const MapDispatch = (dispatch, ownProps) => ({
   dispatchEvent: () => dispatch(fetchEvent(+ownProps.match.params.id)),

@@ -7,7 +7,6 @@ import {fetchCart} from './cart'
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 
-
 /**
  * INITIAL STATE
  */
@@ -50,7 +49,6 @@ export const authPassword = (userInfo, method) =>
 dispatch => {
   axios.put(`/auth/${method}`, userInfo)
     .then(res => {
-      console.log('user received', res.data);
       dispatch(getUser(res.data))
       history.push('/home')
     })

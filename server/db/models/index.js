@@ -30,7 +30,7 @@ const db = require('../db.js');
  Ticket.belongsTo(Event); // adds implicit
  Order.hasMany(Ticket); // Adds userId to ticket
  Ticket.belongsTo(Order) //adds implicit
- Ticket.belongsTo(User, {as: 'seller'}); //Adds
+//  Ticket.belongsTo(User, {as: 'seller'}); //Adds
  Order.hasMany(OrderLine); // Adds orderId to OrderLine
  Order.belongsTo(User); // adds implicit
  Order.belongsToMany(Ticket, {through: OrderLine}); // Adds
