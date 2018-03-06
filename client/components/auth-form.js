@@ -16,13 +16,13 @@ const LoginForm = props => {
           <label htmlFor="email">
             Email
           </label>
-          <input name="email" type="text" placeholder="me@example.com"/>
+          <input name="email" type="text" />
         </div>
         <div className="formItem">
           <label htmlFor="password">
             Password
           </label>
-          <input name="password" type="password" placeholder="password" />
+          <input name="password" type="password" />
         </div>
         <div>
           <button type="submit">{displayName}</button>
@@ -40,29 +40,29 @@ const SignupForm = props => {
   const { name, displayName, handleSubmit, error } = props;
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
+    <div className="loginForm">
+      <form className="addEditForm" onSubmit={handleSubmit} name={name}>
+        <div className="formItem">
           <label htmlFor="firstName">
-            <small>First name</small>
+            First name
           </label>
           <input name="firstName" type="text" />
         </div>
-        <div>
+        <div className="formItem">
           <label htmlFor="lastName">
-            <small>Last name</small>
+            Last name
           </label>
           <input name="lastName" type="text" />
         </div>
-        <div>
+        <div className="formItem">
           <label htmlFor="email">
-            <small>Email</small>
+            Email
           </label>
           <input name="email" type="text" />
         </div>
-        <div>
+        <div className="formItem">
           <label htmlFor="password">
-            <small>Password</small>
+            Password
           </label>
           <input name="password" type="password" />
         </div>
@@ -72,7 +72,9 @@ const SignupForm = props => {
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-      <a href="/auth/google">{displayName} with Google</a>
+      <a href="/auth/google" className="oAuth">
+        <span>{displayName} with Google</span><img src="https://cdn4.iconfinder.com/data/icons/new-google-logo-2015/400/new-google-favicon-256.png"/>
+      </a>
     </div>
   );
 };
