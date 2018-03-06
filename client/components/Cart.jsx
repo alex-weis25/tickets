@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter, Route, Switch } from "react-router-dom";
+import { withRouter, Route, Switch, Link } from "react-router-dom";
+import {removeTicketFromOrder} from '../store'
 
 //import thunk to be mapped
 
@@ -10,23 +11,41 @@ import Checkout from '../payments/checkoutForm.js'
 import TicketListingItem from './TicketListingItem.jsx'
 import ProvideEmail from '../payments/ProvideEmail.js'
 
+
+
 export class Cart extends Component {
 
+  // componentDidMount(){
+  //   if(this.props.cart.tickets.length){
+  //     let removeTickets = this.props.cart.tickets;
+  //     console.log(removeTickets,'...removeTickets')
+  //     removeTickets = removeTickets.filter(ticket => {
+  //       console.log(ticket.orderId,'...orderId')
+  //       return ticket.orderId !== null
+  //     })
+  //     console.log(removeTickets,'...removeTickets')
+  //     if(removeTickets.length) this.props.removeTickets(this.props.orderId , removeTickets)
+  //   }
+  // }
+
   render() {
-    const {user, orderId, cartTotal} = this.props
+    const {user, orderId, cartTotal, cart} = this.props
     return (
       <div className='cartPage'>
         <div className='Review-Buy'>
-          <h1>REVIEW AND BUY</h1>
+          <h1 className='cartBanner'>REVIEW AND BUY</h1>
         </div>
         <div className='cartView'>
           <div className='cartItems'>
             <TicketListingItem/>
           </div>
           <div className='payment'>
-            {user.email ? <Checkout user={user} cartTotal={cartTotal} orderId={orderId}/> :
-            <div><big>Login or provide Email to checkout</big><ProvideEmail/></div>}
-            <CartTotal/>
+            {cart.tickets.length>0 ? user.email ? <Checkout user={user} cartTotal={cartTotal} orderId={orderId}/> :
+            <div><ul><li><big><Link to="/login">Login here</Link></big></li>
+            <li><small>or provide Email to checkout</small></li></ul><ProvideEmail/></div> 
+            : <ul><big>Add tickets to</big><br/><big>your cart :)</big></ul>}
+            <hr className='cartDivider'/>
+            <CartTotal total={cartTotal}/>
           </div>
         </div>
       </div>
@@ -38,8 +57,10 @@ const MapState = ({user, cart}) => {
   const orderId = cart.orderId
   let cartTotal = 0
   cart.tickets.forEach(ticket => cartTotal+= +ticket.price)
-  return { user, orderId, cartTotal }
+  return { user, orderId, cartTotal, cart }
 }
-const MapDispatch = null;
+const MapDispatch = dispatch => ({
+  removeTickets: (tickets) => dispatch(removeTicketFromOrder(tickets))
+});
 
 export default withRouter(connect(MapState, MapDispatch)(Cart));

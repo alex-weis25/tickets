@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Script from 'react-load-script'
 import { connect } from "react-redux";
-import { withRouter, Route, Switch } from "react-router-dom";
+import { withRouter, Route, Switch, Link } from "react-router-dom";
 import axios from 'axios';
 import { addEmail, createCart } from '../store'
 
@@ -17,13 +17,12 @@ class ProvideEmail extends Component {
 
   render() {
       const { onSubmit } = this.props
-      let emailWarning = this.validateEmail(this.state.firstEmail) ? '' : "Email must be valid"
-      let confirmWarning = this.state.firstEmail === this.state.secondEmail ? '' : "Emails must match"
+      let emailWarning = this.validateEmail(this.state.firstEmail) ? '' : this.state.firstEmail === '' ? '' : " must be valid"
+      let confirmWarning = this.state.firstEmail === this.state.secondEmail && !emailWarning ? '' : " does not match"
       return (
         <form onSubmit={onSubmit}>
-        <div>
           <ul> 
-            <li><small>Email: {emailWarning ? <small style={{color:"red"}}>{emailWarning}</small> : <div/>}</small></li>
+      <li><small>Email: {emailWarning ? emailWarning : confirmWarning ? confirmWarning : '' }</small></li>
             <li><input name="firstEmail" 
             className="form-control"
             value={this.state.firstEmail}
@@ -36,10 +35,8 @@ class ProvideEmail extends Component {
             onChange={this.handleChange}
             placeholder='Confirm Email'
             /></li>
-          </ul>
-        </div>
-        <button type="submit" className="btn btn-block btn-primary"
-        disabled={emailWarning || confirmWarning}>Submit Email</button>
+        <button type="submit" className="Email-btn"
+        disabled={emailWarning || confirmWarning || this.state.secondEmail.length<1}>Submit Email</button></ul>
         </form>       
     );
   }

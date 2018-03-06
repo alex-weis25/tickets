@@ -152,6 +152,7 @@ router.put('/purchase/:orderId', (req, res, next) => {
   //   })
   // })
   .then(sendIt => {
+    req.session.destroy();
     res.status(201).json(sendIt);
   })
   .catch(next);

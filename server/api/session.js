@@ -21,7 +21,7 @@ router.put('/', (req, res, next) => {
 });
 
 router.delete('/', (req, res, next) => {
-    let sesstionTix = req.session.cart.tickets
+    let sessionTix = req.session.cart.tickets
     let tickets = sessionTix.filter(sessionTicket => {
         let removeTix = req.body
         removeTix = removeTix.filter(removeTicket => {
