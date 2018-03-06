@@ -27,6 +27,7 @@ button {
   font-size: 16px;
   border-radius: 2%;
   box-shadow: 1px 1px 1px 1px rgba(157, 139, 161, 0.2);
+  max-height: 50px;
 }
 
 button:disabled {
@@ -88,7 +89,6 @@ button:disabled {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  background: aquamarine;
 }
 
 .allEvents-headers{
@@ -147,7 +147,6 @@ button:disabled {
   border-radius: 5%;
 }
 
-<<<<<<< HEAD
 .single-event {
   margin: 3%;
   display: flex;
@@ -186,12 +185,30 @@ button:disabled {
   flex-direction: column;
   align-content: flex-start;
   color: white;
+  flex-grow: 2;
+}
+.tickets-display{
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.ticket-items{
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+}
+
+.selected {
+  background-color: rgba(4, 47, 66, 0.45);
 }
 
 .buyTickets li {
   list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-=======
 
 /* Cart Page Styling */
 
@@ -268,4 +285,3 @@ ul
   border-top:3px dotted #000;
   width: 95%;
 }
->>>>>>> master

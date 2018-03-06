@@ -39,13 +39,12 @@ export class SingleEvent extends Component {
             {venue && <h3>{venue.name}</h3>}
           </div>
         </div>
-        <div className="buyTickets">
-          <h4>{event.description}</h4>
-          <EventTickets />
-        </div>
           {
            eventDate > today ?
-            (<div><EventTickets /></div>) :
+            (<div className="buyTickets">
+            <h4>{event.description}</h4>
+            <EventTickets />
+          </div>) :
           (<EventReviews props={selectedEvent} users={users} />)
           }
       </div>
