@@ -23,9 +23,8 @@ export class UserHome extends Component {
 
   fetchOrderLines = () => {
     const userId = this.props.userId;
-    const sent = { userId };
     axios
-      .put("/api/tickets", sent)
+      .get(`/api/tickets/${userId}`)
       .then(res => {
         console.log("order$#@", res.data);
         return res.data;

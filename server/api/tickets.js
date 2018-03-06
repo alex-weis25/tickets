@@ -3,9 +3,9 @@ const { Ticket, Order, OrderLine, Event } = require('../db/models')
 module.exports = router;
 
 //Pull all orderIds for a given user
-router.put('/', (req, res, next) => {
+router.get('/:userId', (req, res, next) => {
   return Order.findAll({ where: {
-    userId: req.body.userId
+    userId: req.params.userId
   }})
   .then(orders => {
     const ids = orders.map(order => {
