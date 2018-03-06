@@ -8,13 +8,12 @@ import EventListingItem from './EventListingItem.jsx'
  */
 function AllEvents(props){
   const events = props.events;
-  const user = props.user.adminStatus
-  console.log('user in all users: ', user);
+  const admin = props.user.adminStatus
   return (
     <div>
       <div className="allEvents-headers">
         <h1>All Events</h1>
-        {user ? (
+        {admin ? (
           <Link to={`/event/add`}>
             <button type="button">+ Add Event</button>
           </Link>

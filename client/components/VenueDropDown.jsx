@@ -8,7 +8,7 @@ export default class VenueDropDown extends Component{
       venues: []
     }
   }
-  componentWillMount() {
+  componentDidMount() {
     axios.get('/api/venues')
       .then(res =>
         this.setState({venues: res.data}))

@@ -53,7 +53,6 @@ export const authPassword = (userInfo, method) =>
 dispatch => {
   axios.put(`/auth/${method}`, userInfo)
     .then(res => {
-      console.log('user received', res.data);
       dispatch(getUser(res.data))
       history.push('/home')
     })
