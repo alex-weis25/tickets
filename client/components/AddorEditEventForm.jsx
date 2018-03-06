@@ -81,7 +81,7 @@ export default class AddOrEditEventForm extends Component {
           <legend>Description</legend>
           <textarea
             name="description"
-            form={this.props.formType}
+            form={this.props.formType.split(' ').join('_')}
             className="form-like large-font"
             placeholder="http://www.interesting.com"
             defaultValue={this.props.description}

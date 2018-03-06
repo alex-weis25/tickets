@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { thunkAddTicket } from '../store/tickets.js';
-import AddOrEditTicketForm from './AddOrEditTicketForm.jsx';
+import { thunkAddTickets } from '../store';
+import AddTicketForm from './AddTicketForm.jsx';
 
 
 class AddTicket extends Component{
@@ -24,7 +23,8 @@ class AddTicket extends Component{
       seat: this.nullIfBlank(seat),
       eventId: this.nullIfBlank(eventId)
     }
-    this.props.thunkAddTicket(createBody);
+    this.props.thunkAddTickets(createBody);
+    this.props.toggle();
   }
 
   // utility function
@@ -37,28 +37,22 @@ class AddTicket extends Component{
   render(){
     return (
       <div>
-         { this.props.shouldRedirect ?
-          (
-            <Redirect to={`/ticket/${this.props.ticket.id}`} />
-          ) : (
-            <AddOrEditTicketForm
-              formType="Add Ticket"
-              onSubmit={this.onSubmit}
-              error={this.props.error}
-            />
-          )}
+        <AddTicketForm
+          formType="Add Ticket"
+          onSubmit={this.onSubmit}
+          error={this.props.error}
+        />
       </div>
     )
   }
 }
 
-const mapState = ({ tickets }) => {
-  const ticket = tickets.selectedEvent;
-  const error = tickets.errorMessages;
-  const shouldRedirect = tickets.redirectOnSubmitComplete;
-  return { ticket, error, shouldRedirect }
+const mapState = ({ events }) => {
+  const event = events.selectedEvent;
+  const error = events.errorMessages;
+  return { event, error }
 };
-const mapDispatch = { thunkAddTicket }
+const mapDispatch = { thunkAddTickets }
 
 export default connect(mapState, mapDispatch)(AddTicket);
 

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter, Route, Switch } from "react-router-dom";
 import moment from 'moment';
 import EventReviews from './reviews/eventReview';
+import AddTicket from './AddTicket.jsx'
 
 //import thunk to be mapped
 import { fetchEvent } from "../store/events.js";
@@ -13,10 +14,20 @@ import EventTickets from './EventTickets.jsx'
 export class SingleEvent extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      showAddTickets: false
+    }
+    this.toggleAddTicket = this.toggleAddTicket.bind(this);
   }
 
   componentDidMount() {
     this.props.dispatchEvent();
+  }
+
+  toggleAddTicket(){
+    console.log('clicked');
+    let status = this.state.showAddTickets;
+    this.setState({showAddTickets: !status})
   }
 
   render() {
@@ -25,8 +36,7 @@ export class SingleEvent extends Component {
     const event = selectedEvent;
     const today = new Date();
     const eventDate = new Date(selectedEvent.date);
-    // console.log("today: ", today, "eventDate: ", eventDate, "greater than: ", today < eventDate)
-    console.log('props: ', this.props);
+    const admin = this.props.user.adminStatus
     return (
       <div className="single-event">
         <img src={event.imgUrl} />
@@ -41,10 +51,19 @@ export class SingleEvent extends Component {
         </div>
           {
            eventDate > today ?
-            (<div className="buyTickets">
-            <h4>{event.description}</h4>
-            <EventTickets />
-          </div>) :
+            (<div>
+              {admin && !this.state.showAddTickets && (
+                <button type="button" onClick={this.toggleAddTicket}>+ Add Tickets</button>
+              )}
+              {this.state.showAddTickets && (
+                <AddTicket eventId={+this.props.match.params.id} toggle={this.toggleAddTicket}/>
+              )}
+              <div className="buyTickets">
+                <h4>{event.description}</h4>
+                <EventTickets />
+              </div>
+            </div>
+              ) :
           (<EventReviews props={selectedEvent} users={users} />)
           }
       </div>
