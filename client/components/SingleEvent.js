@@ -52,9 +52,9 @@ export class SingleEvent extends Component {
   }
 }
 
-const MapState = ({ events, users }) => {
+const MapState = ({ events, users, user }) => {
   const selectedEvent = events.selectedEvent;
-  return { selectedEvent, users }
+  return { selectedEvent, users, user }
 };
 const MapDispatch = (dispatch, ownProps) => ({
   dispatchEvent: () => dispatch(fetchEvent(+ownProps.match.params.id)),
