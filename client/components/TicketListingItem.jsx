@@ -13,11 +13,14 @@ export class TicketListingItem extends Component{
     const { cartTickets, orderId, theEvents } = this.props
     const eventList = this.returnSortedEvents(cartTickets)
     // add message to client: no tickets in cart
-    if (!theEvents) return <div />
+    if (!theEvents.length) return <div />
+    console.log(eventList,"...eventList")
+    console.log(theEvents,"...theEvents")
     return (
 
       <div className="cartEventListing">
         {eventList.map(eventId => {
+
           let ticketEvent = theEvents.find(event => event.id === eventId)
           return (
             <div className="singleEventListing" key={eventId}>
@@ -40,7 +43,7 @@ export class TicketListingItem extends Component{
   returnSortedEvents = allTickets => {
     let eventArr = []
     let uniqueArr = []
-    allTickets.map(ticket => eventArr.push(ticket.eventId))
+    allTickets.forEach(ticket => eventArr.push(ticket.eventId))
     eventArr = eventArr.sort((a, b) => a - b)
     for (let i = 0; i < eventArr.length; i++) {
       let event = eventArr[i]

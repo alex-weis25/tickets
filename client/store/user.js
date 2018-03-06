@@ -6,6 +6,7 @@ import {fetchCart} from './cart'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
+const ADD_EMAIL = 'ADD_EMAIL'
 
 /**
  * INITIAL STATE
@@ -16,6 +17,7 @@ const defaultUser = {}
  * ACTION CREATORS
  */
 const getUser = user => ({type: GET_USER, user})
+export const addEmail = email => ({type: ADD_EMAIL, email})
 const removeUser = () => ({type: REMOVE_USER})
 
 /**
@@ -65,13 +67,17 @@ export const logout = () =>
       })
       .catch(err => console.log(err))
 
+
+
 /**
  * REDUCER
  */
 export default function (state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
-      return action.user
+      return action.user;
+    case ADD_EMAIL:
+      return Object.assign({}, state, {email: action.email})
     case REMOVE_USER:
       return defaultUser
     default:

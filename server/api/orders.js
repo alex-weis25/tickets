@@ -63,10 +63,13 @@ router.delete('/:orderId', (req, res, next) => {
 })
 
 //Creating a new cart for a user
-router.post('/users/:userId', (req, res, next) => {
-  const newTickets = req.body; //Assume obj w/ order id & arr of tickets
-  const newId = req.params.userId;
-  Order.create({userId: newId})
+router.post('/create', (req, res, next) => {
+  const newTickets = req.body.tickets || req.session.cart.tickets;
+  const orderUser = req.body.user;
+  Order.create({
+    userId: orderUser.id || null,
+    orderEmail: orderUser.email
+  })
   .then(created => {
     const orderId = created.id;
     const newOrders = newTickets.map(ticket => {

@@ -70,10 +70,10 @@ export const fetchCart = (userId) =>
       })
       .catch(err => console.log(err))
 
-export const createCart = (userId, tickets) =>
-  dispatch =>
-    userId ?
-    axios.post(`/api/orders/users/${userId}`, tickets)
+export const createCart = (user, tickets) =>
+  dispatch => {
+    user.email ?
+    axios.post(`/api/orders/create`, {user, tickets})
       .then(res => res.data)
       .then(order => {
         const orderId = order.id
@@ -88,6 +88,7 @@ export const createCart = (userId, tickets) =>
         dispatch(initCart(cart))
       })
       .catch(err => console.log(err))
+  }
 
 export const addTicketsToOrder = (orderId, tickets) =>
   dispatch =>
@@ -111,8 +112,6 @@ export const removeTicketFromOrder = (orderId, tickets) =>
 
 export const submitOrder = (orderId) =>
   dispatch =>
-    orderId
-      ? axios.put(`/api/orders/purchase/${orderId}`)
-      : axios.put(`/api/session/purchase`)
-        .then(() => dispatch(clearCart()))
-        .catch(err => console.log(err))
+    axios.put(`/api/orders/purchase/${orderId}`)
+      .then(() => dispatch(clearCart()))
+      .catch(err => console.log(err))
