@@ -23,7 +23,7 @@ export class Cart extends Component {
           <TicketListingItem/>
         </div>
         <div className='payment'>
-          {orderId ? <Checkout user={user} cartTotal={cartTotal} orderId={orderId}/> :
+          {user.email ? <Checkout user={user} cartTotal={cartTotal} orderId={orderId}/> :
           <ProvideEmail/>}
           <CartTotal/>
         </div>

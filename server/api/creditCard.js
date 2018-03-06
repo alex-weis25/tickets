@@ -6,14 +6,14 @@ var stripe = require('stripe')(process.env.STRIPE_CLIENT_SECRET);
 //Credit Card Authorization
 router.post('/', (req, res, next) => {
   const token = req.body.response.id;
-  console.log('cartTotal: ', req.body.cartTotal);
-  console.log('typeof cartTotal: ', typeof req.body.cartTotal);
-  console.log('orderId: ', req.body.orderId);
-  console.log('user: ', req.body.user);
   stripe.charges.create({
     amount: req.body.cartTotal * 100,
     currency: "usd",
-    description: "Example charge",
+    description: "Tickets",
+    metadata: {order_id: req.body.orderId,
+      customer_name: req.body.user.firstName + ' ' + req.body.user.lastName,
+      customer_email: req.body.user.email
+    },
     source: token,
   }, function(err, charge) {
     // asynchronously called
