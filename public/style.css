@@ -99,6 +99,11 @@ button:disabled {
   align-items: center;
 }
 
+.single-title img{
+  height: 400px;
+  width: 600px;
+}
+
 .eventListing {
   margin: 3%;
   height: 400px;
@@ -113,6 +118,8 @@ button:disabled {
   position: absolute;
   top: 0;
   left: 0;
+  height: 400px;
+  width: 600px;
   z-index: -1;
 }
 
@@ -159,6 +166,8 @@ button:disabled {
   position: absolute;
   top: 0;
   left: 0;
+  width: 600px;
+  height: 400px;
   z-index: 1;
 }
 
