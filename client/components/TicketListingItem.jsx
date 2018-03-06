@@ -8,16 +8,18 @@ import { withRouter, Route, Switch } from "react-router-dom";
  */
 
 export class TicketListingItem extends Component{
+
+
   render(){
 
-    const { cartTickets, orderId, theEvents } = this.props
+    const { cartTickets, orderId, allEvents } = this.props
     const eventList = this.returnSortedEvents(cartTickets)
     // add message to client: no tickets in cart
-    if (!theEvents.length) return (<h1>No Tickets in the cart</h1>)
+    if (!eventList.length || !allEvents.length) return <h1>No Tickets in the cart</h1>
     return (
       <div className="cartEventListing">
         {eventList.map((eventId, index) => {
-          let ticketEvent = theEvents.find(event => event.id === eventId)
+          let ticketEvent = allEvents.find(event => event.id === eventId)
           let tickets = cartTickets.filter(ticket => ticket.eventId === eventId)
           let seats = tickets.map(ticket => ticket.seat).join(', ')
           return (
@@ -64,8 +66,8 @@ export class TicketListingItem extends Component{
 const MapState = ({ cart, events }) => {
   const cartTickets = cart.tickets;
   const orderId = cart.orderId
-  const theEvents = events.events
-  return { cartTickets, orderId, theEvents }
+  const allEvents = events.events
+  return { cartTickets, orderId, allEvents }
 };
 
 const MapDispatch = null
