@@ -88,6 +88,7 @@ button:disabled {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
+  background: aquamarine;
 }
 
 .allEvents-headers{
@@ -146,6 +147,7 @@ button:disabled {
   border-radius: 5%;
 }
 
+<<<<<<< HEAD
 .single-event {
   margin: 3%;
   display: flex;
@@ -189,3 +191,81 @@ button:disabled {
 .buyTickets li {
   list-style: none;
 }
+=======
+
+/* Cart Page Styling */
+
+.Review-Buy {
+  background-image: url("https://cdn.geekwire.com/wp-content/uploads/2017/01/amazonparty07368-1240x823.jpg");
+  background-position: center;
+  color: aliceblue;
+  height: 10em;
+  display: flex;
+}
+
+.cartView {
+  display: flex;
+}
+
+.cartItems{
+  display: flex;
+  flex: 3;
+}
+
+.payment{
+  flex: 2;
+  background-color: beige;
+  flex-direction: column;
+  max-width: 15em;
+}
+
+.singleEventListing0{
+  display: flex;
+  flex-direction: column;
+}
+.singleEventListing1{
+  display: flex;
+  flex-direction: column;
+  background-color: cadetblue;
+}
+
+.eventDetails{
+  display: flex;
+}
+
+.eventDate{
+  flex: 2;
+}
+
+.eventInformation2{
+  flex: 5;
+}
+
+.seatDetails{
+  display: flex;
+}
+
+.seats{
+  flex: 1;
+}
+.seatInfo{
+  flex: 3;
+  align-self: flex-start;
+}
+.ticketImg{
+  flex: 2;
+}
+.smallPic{
+  max-width:95%;
+}
+
+ul
+{
+    list-style-type: none;
+}
+
+.cartDivider {
+  border-top:3px dotted #000;
+  width: 95%;
+}
+>>>>>>> master

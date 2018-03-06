@@ -4,7 +4,7 @@ function permChecker(req, res, next, action){
   if(req.session.passport){
     User.scope('showPermissions').findById(req.session.passport.user)
     .then(user => {
-        if (user.permissions.filter(permission => permission.action !== action).length > 0){
+      if (user.permissions.find(permission => permission.action === action)){
           console.log('approved!!');
           next();
         } else {

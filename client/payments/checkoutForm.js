@@ -3,9 +3,11 @@ import Script from 'react-load-script'
 import '../../secrets';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
+import { submitOrder } from '../store'
+import { connect } from "react-redux";
 
 
-export default class CheckoutForm extends Component{
+class CheckoutForm extends Component{
   constructor(props) {
     super(props)
     this.state = {
@@ -25,6 +27,7 @@ export default class CheckoutForm extends Component{
 
   onSubmit(event) {
     let self = this;
+    const {completeOrder, orderId, cartTotal, user} = this.props;
     event.preventDefault();
     this.setState({ submitDisabled: true, paymentSubmitted: true, paymentError: null });
     // here is where we tokenize the credit card
@@ -36,10 +39,14 @@ export default class CheckoutForm extends Component{
       else {
         self.setState({ submitDisabled: false, token: response.id });
         // If it was suscessful, we are submitting the tokenzed card and order data to our API here
-        axios.post('/api/creditAuth', response)
+        axios.post('/api/creditAuth', {user, orderId, cartTotal, response})
         .then(response => {
-          self.setState({paymentComplete: true, charge: response.data})
-        });
+          self.setState({charge: response.data})
+          return completeOrder(orderId);
+        })
+        .then(_ => {
+          self.setState({paymentComplete: true})
+        })
       }
      }
     );
@@ -96,3 +103,10 @@ export default class CheckoutForm extends Component{
     );
   }
 }
+
+const MapState = null;
+
+const MapDispatch = (dispatch) => ({completeOrder: id => dispatch(submitOrder(id))});
+
+
+export default connect(MapState, MapDispatch)(CheckoutForm);

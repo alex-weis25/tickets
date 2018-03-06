@@ -13,23 +13,32 @@ export class TicketListingItem extends Component{
     const { cartTickets, orderId, theEvents } = this.props
     const eventList = this.returnSortedEvents(cartTickets)
     // add message to client: no tickets in cart
-    if (!theEvents) return <div />
+    if (!theEvents.length) return (<h1>No Tickets in the cart</h1>)
     return (
-
       <div className="cartEventListing">
-        {eventList.map(eventId => {
+        {eventList.map((eventId, index) => {
           let ticketEvent = theEvents.find(event => event.id === eventId)
+          let tickets = cartTickets.filter(ticket => ticket.eventId === eventId)
+          let seats = tickets.map(ticket => ticket.seat).join(', ')
           return (
-            <div className="singleEventListing" key={eventId}>
+            <div className={"singleEventListing" + index%2} key={eventId}>
               <div className="eventDetails">
                 <div className="eventDate">
-                  <div className="eventInformation">
-                  <h2>Event Name: {ticketEvent.name}</h2>
-                    <img src={ticketEvent.imgUrl} />
-                    <h3>Event Date: {ticketEvent.date}</h3>
-                    <h4>Event Description: {ticketEvent.description}</h4>
-                  </div>
+                    <h3>Event Date</h3>
                 </div>
+                <div className="eventInformation2">
+                  <h2>{ticketEvent.name}</h2>
+                  <h4>{ticketEvent.venue.name} - {ticketEvent.venue.city}, {ticketEvent.venue.state}</h4>
+                </div>
+              </div>
+              <hr className='cartDivider'/>
+              <div className='seatDetails'>
+                <div className='seats'><h3>SEATS</h3></div>
+                <div className='seatInfo'> <ul>
+                  <li>{tickets.length>1 ? <h4>{tickets.length} Tickets</h4> : <h4>1 Ticket</h4>}</li>
+                  <li><h4>Seats : {seats}</h4></li>
+                </ul></div>
+                <div className='ticketImg'><img className='smallPic' src={ticketEvent.imgUrl} /></div>
               </div>
           </div>)
         })}
@@ -40,7 +49,7 @@ export class TicketListingItem extends Component{
   returnSortedEvents = allTickets => {
     let eventArr = []
     let uniqueArr = []
-    allTickets.map(ticket => eventArr.push(ticket.eventId))
+    allTickets.forEach(ticket => eventArr.push(ticket.eventId))
     eventArr = eventArr.sort((a, b) => a - b)
     for (let i = 0; i < eventArr.length; i++) {
       let event = eventArr[i]

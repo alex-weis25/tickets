@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import { clearSelectedTickets } from './index'
 /**
  * ACTION TYPES
  */
@@ -57,9 +57,10 @@ export const fetchCart = (userId) =>
       .then(res => res.data)
       .then(order => {
         if(!order) return undefined;
-        const orderId = order.id
-        const tickets = order.tickets
-        dispatch(initCart({orderId, tickets}))
+          const orderId = order.id
+          const tickets = order.tickets
+          dispatch(initCart({orderId, tickets}))
+        
       })
       .catch(err => console.log(err))
     : axios.get(`/api/session`)
@@ -70,10 +71,10 @@ export const fetchCart = (userId) =>
       })
       .catch(err => console.log(err))
 
-export const createCart = (userId, tickets) =>
-  dispatch =>
-    userId ?
-    axios.post(`/api/orders/users/${userId}`, tickets)
+export const createCart = (user, tickets) =>
+  dispatch => {
+    user.email ?
+    axios.post(`/api/orders/create`, {user, tickets})
       .then(res => res.data)
       .then(order => {
         const orderId = order.id
@@ -88,15 +89,22 @@ export const createCart = (userId, tickets) =>
         dispatch(initCart(cart))
       })
       .catch(err => console.log(err))
+  }
 
 export const addTicketsToOrder = (orderId, tickets) =>
   dispatch =>
     orderId 
       ? axios.put(`/api/orders/${orderId}`, tickets)
+        .then(res => res.data)
+        .then(updatedOrder => updatedOrder.tickets)
+        .then(tickets => dispatch(addTickets(tickets)))
+        .then(_=> dispatch(clearSelectedTickets()))
+        .catch(err => console.log(err))
       : axios.put(`/api/session`, tickets)
         .then(res => res.data)
         .then(updatedOrder => updatedOrder.tickets)
         .then(tickets => dispatch(addTickets(tickets)))
+        .then(_=> dispatch(clearSelectedTickets()))
         .catch(err => console.log(err))
 
 export const removeTicketFromOrder = (orderId, tickets) =>
@@ -111,8 +119,6 @@ export const removeTicketFromOrder = (orderId, tickets) =>
 
 export const submitOrder = (orderId) =>
   dispatch =>
-    orderId
-      ? axios.put(`/api/orders/purchase/${orderId}`)
-      : axios.put(`/api/session/purchase`)
-        .then(() => dispatch(clearCart()))
-        .catch(err => console.log(err))
+    axios.put(`/api/orders/purchase/${orderId}`)
+      .then(() => dispatch(clearCart()))
+      .catch(err => console.log(err))

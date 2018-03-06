@@ -4,12 +4,12 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout, clearCart} from '../store'
 import Ticket from 'react-icons/lib/fa/ticket'
-
+import Tint from 'react-icons/lib/fa/tint'
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div className="nav-group">
     <Link to="/">
-      <h1>rainCheck</h1>
+      <h1>ra<Tint />nCheck</h1>
     </Link>
     <hr />
     <nav>

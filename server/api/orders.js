@@ -63,15 +63,18 @@ router.delete('/:orderId', (req, res, next) => {
 })
 
 //Creating a new cart for a user
-router.post('/users/:userId', (req, res, next) => {
-  const newTickets = req.body; //Assume obj w/ order id & arr of tickets
-  const newId = req.params.userId;
-  Order.create({userId: newId})
+router.post('/create', (req, res, next) => {
+  const newTickets = req.body.tickets || req.session.cart.tickets;
+  const orderUser = req.body.user;
+  Order.create({
+    userId: orderUser.id || null,
+    orderEmail: orderUser.email
+  })
   .then(created => {
     const orderId = created.id;
     const newOrders = newTickets.map(ticket => {
       return OrderLine.build({
-        orderId: orderId,
+        orderId,
         ticketId: ticket.id
       })
     })
@@ -86,14 +89,36 @@ router.post('/users/:userId', (req, res, next) => {
   .catch(next);
 })
 
-//Populate users => this should be moved to orders or create cart api routes file
+//Populate users cart
 router.get('/cart/:userId', (req, res, next) => {
+  let orderId;
   Order.scope('showTickets').findOne({ where: {
     userId: req.params.userId,
     status: 'in-cart'
   }})
-  .then(orderList => {
-    res.json(orderList)
+  .then(order => {
+    if(req.session.cart.tickets.length && order){
+      const sessionTickets = req.session.cart.tickets;
+      const orderTickets = order.tickets
+      orderId = order.id
+      const tickets = filterTickets(sessionTickets, orderTickets)
+      const newOrders = tickets.map(ticket => {
+        return OrderLine.build({
+          orderId,
+          ticketId: ticket.id
+        })
+      })
+      return Promise.all(newOrders.map(order => order.save()))
+      .then(_ => {
+        Order.scope('showTickets').findById(orderId)
+        .then(found => {
+          res.status(200).json(found);
+        })
+      })
+    }
+    else{ 
+      res.status(200).json(order)
+    }
   })
   .catch(next);
 })
@@ -131,3 +156,15 @@ router.put('/purchase/:orderId', (req, res, next) => {
   })
   .catch(next);
 })
+
+
+function filterTickets(sessionTix, orderTix){
+  let tickets = sessionTix.filter(orderTicket => {
+    let sessionTickets = orderTix
+    sessionTickets = sessionTickets.filter(sessionTicket => {
+      return orderTicket.id === sessionTicket.id
+    })
+    return sessionTickets.length === 0;
+  })
+  return tickets
+}
