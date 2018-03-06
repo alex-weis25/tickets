@@ -5,8 +5,9 @@ import {Link} from 'react-router-dom'
 import {logout, clearCart} from '../store'
 import Ticket from 'react-icons/lib/fa/ticket'
 import Tint from 'react-icons/lib/fa/tint'
+import NavTotal from './NavTotal.jsx'
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
+const Navbar = ({ handleClick, isLoggedIn}) => (
   <div className="nav-group">
     <Link to="/">
       <h1>ra<Tint />nCheck</h1>
@@ -21,6 +22,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
             Logout
             </a>
             <Link to="/cart"><Ticket /> My Tickets </Link>
+            <NavTotal/>
         </div>
       ) : (
         <div>
@@ -29,6 +31,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
           <Link to="/cart"><Ticket /> My Tickets </Link>
+          <NavTotal/>
 
         </div>
       )}
@@ -41,9 +44,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
  * CONTAINER
  */
 const mapState = state => {
-  return {
-    isLoggedIn: !!state.user.id
-  }
+  return {isLoggedIn: !!state.user.id}
 }
 
 const mapDispatch = dispatch => {

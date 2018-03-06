@@ -8,7 +8,6 @@ const SELECT_EVENT = 'SELECT_EVENT'
 const ADD_EVENT = 'ADD_EVENT'
 const ADD_OR_UPDATE_FAILED = 'ADD_OR_UPDATE_FAILED';
 
-
 /**
  * INITIAL STATE
  */
@@ -48,9 +47,22 @@ export const thunkAddEvent = (event) =>
   dispatch =>
     axios.post(`/api/events/`, event)
       .then(res => {
-        // console.log('response in thunkAddEvent', res);
         if (!res.data.errors){
           return dispatch(addEvent(res.data))
+        } else {
+          let errorArr = res.data.errors.map(err => err.message)
+          return dispatch(addOrUpdateFailed(errorArr))
+        }
+      })
+      .catch(err => console.log(err))
+
+  export const thunkAddTickets = (tickets) =>
+  dispatch =>
+    axios.post(`/api/events/tickets`, tickets)
+      .then(res => {
+        if (!res.data.errors){
+          dispatch(fetchEvent(res.data[0].eventId))
+          dispatch(fetchEvents())
         } else {
           let errorArr = res.data.errors.map(err => err.message)
           return dispatch(addOrUpdateFailed(errorArr))

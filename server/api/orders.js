@@ -116,7 +116,7 @@ router.get('/cart/:userId', (req, res, next) => {
         })
       })
     }
-    else{ 
+    else{
       res.status(200).json(order)
     }
   })
@@ -152,12 +152,13 @@ router.put('/purchase/:orderId', (req, res, next) => {
   //   })
   // })
   .then(sendIt => {
+    req.session.destroy();
     res.status(201).json(sendIt);
   })
   .catch(next);
 })
 
-
+//refactor for tickets in event and date
 function filterTickets(sessionTix, orderTix){
   let tickets = sessionTix.filter(orderTicket => {
     let sessionTickets = orderTix

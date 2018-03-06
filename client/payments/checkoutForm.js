@@ -37,6 +37,13 @@ class CheckoutForm extends Component{
         self.setState({ paymentError: response.error.message, submitDisabled: false });
       }
       else {
+        //Send email
+        const data = {
+          email: user.email,
+          amount: cartTotal
+        }
+        axios.post('/api/nodemailer', data);
+        //
         self.setState({ submitDisabled: false, token: response.id });
         // If it was suscessful, we are submitting the tokenzed card and order data to our API here
         axios.post('/api/creditAuth', {user, orderId, cartTotal, response})
@@ -76,17 +83,17 @@ class CheckoutForm extends Component{
         (<h3>Loading...</h3>) :
         (<div>
           {!this.state.paymentComplete ?
-          (<form onSubmit={this.onSubmit} >
-            <span>{ this.state.paymentError }</span><br />
+          (<ul><form onSubmit={this.onSubmit} >
+            <span><small>{ this.state.paymentError ? this.state.paymentError : this.state.paymentSubmitted ? '' : 'Enter credit card to check out' }</small></span><br/><br />
             <input name='cardNumber' type='text' data-stripe='number' placeholder='credit card number' /><br />
             <input name='cardExpMonth' type='text' data-stripe='exp-month' placeholder='expiration month' /><br />
             <input name='cardExpYear' type='text' data-stripe='exp-year' placeholder='expiration year' /><br />
             <input name='cardCVC' type='text' data-stripe='cvc' placeholder='cvc' /><br />
-            <button
+            <button className='Email-btn'
               disabled={this.state.submitDisabled}
               type='submit'
-            >{this.state.paymentSubmitted ? 'Submitting Payment' : 'Purchase'}</button>
-          </form>) :
+            >{this.state.paymentSubmitted ? this.state.paymentError ? 'Purchase' : 'Submitting Payment' : 'Purchase'}</button>
+          </form></ul>) :
           (<div>
             <h3>Purchase Complete</h3>
             <h3>Summary: </h3>
