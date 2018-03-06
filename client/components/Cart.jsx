@@ -15,17 +15,19 @@ export class Cart extends Component {
   render() {
     const {user, orderId, cartTotal} = this.props
     return (
-      <div className='cartView'>
+      <div className='cartPage'>
         <div className='Review-Buy'>
           <h1>REVIEW AND BUY</h1>
         </div>
-        <div className='cartItems'>
-          <TicketListingItem/>
-        </div>
-        <div className='payment'>
-          {user.email ? <Checkout user={user} cartTotal={cartTotal} orderId={orderId}/> :
-          <ProvideEmail/>}
-          <CartTotal/>
+        <div className='cartView'>
+          <div className='cartItems'>
+            <TicketListingItem/>
+          </div>
+          <div className='payment'>
+            {user.email ? <Checkout user={user} cartTotal={cartTotal} orderId={orderId}/> :
+            <div><big>Login or provide Email to checkout</big><ProvideEmail/></div>}
+            <CartTotal/>
+          </div>
         </div>
       </div>
     );
