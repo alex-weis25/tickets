@@ -145,3 +145,14 @@ button:disabled {
   background-color: rgba(4, 47, 66, 0.6);
   border-radius: 5%;
 }
+
+
+/* Cart Page Styling */
+
+.Review-Buy {
+  background-image: url("https://cdn.geekwire.com/wp-content/uploads/2017/01/amazonparty07368-1240x823.jpg");
+  background-position: center;
+  color: aliceblue;
+  height: 6em;
+  display: flex;
+}

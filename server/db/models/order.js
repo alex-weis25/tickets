@@ -8,6 +8,9 @@ const Order = db.define(
       type: Sequelize.ENUM,
       values: ["in-cart", "purchased"],
       defaultValue: "in-cart"
+    },
+    orderEmail: {
+      type: Sequelize.STRING,
     }
   },
   {

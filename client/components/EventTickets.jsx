@@ -10,9 +10,13 @@ import { addTicketsToOrder, createCart } from '../store/cart.js';
 
 export class EventTickets extends Component {
 
+  componentWillUnmount(){
+    this.props.unmountClear()
+  }
+
   render() {
-    const { checkCart, orderId, userId, selectedTickets, cartTickets, eventTickets } = this.props
-    if(!eventTickets) return <div/>;
+    const { checkCart, orderId, selectedTickets, cartTickets, eventTickets, user } = this.props
+    if(!eventTickets || ! cartTickets) return <div/>;
     let evtTix = eventTickets
     let tickets = evtTix.filter(eventTicket => {
       let cartTix = cartTickets
@@ -23,8 +27,8 @@ export class EventTickets extends Component {
     })
     return (
       <div>
-        {tickets.length ? 
-          <form onSubmit={(event) => checkCart(userId, orderId, event, selectedTickets, cartTickets)} className="tickets-display">
+        {tickets.length ?
+          <form onSubmit={(event) => checkCart(user, orderId, event, selectedTickets, cartTickets)} className="tickets-display">
           <label>Available tickets:</label>
           {tickets &&
             tickets.map(ticket => {
@@ -38,8 +42,8 @@ export class EventTickets extends Component {
               );
             })}
           <button type="submit">Add to cart</button>
-        </form> 
-        : <big>No tickets are available</big>} 
+        </form>
+        : <big>No tickets are available</big>}
       </div>
     );
   }
@@ -48,9 +52,8 @@ export class EventTickets extends Component {
 const MapState = ({ events, user , cart, selectedTickets }) => {
   const cartTickets = cart.tickets
   const eventTickets = events.selectedEvent.tickets;
-  const userId = user.id;
   const orderId = cart.orderId;
-  return { userId, eventTickets, orderId, selectedTickets, cartTickets }
+  return { eventTickets, orderId, selectedTickets, cartTickets, user }
 };
 const MapDispatch = (dispatch, ownProps) => ({
   handleChange(event, eventTickets){
@@ -59,9 +62,12 @@ const MapDispatch = (dispatch, ownProps) => ({
     event.target.checked ? dispatch(addSelectedTickets(ticket)) : dispatch(removeSelectedTickets(ticketId))
   },
 
-  checkCart(userId, orderId, event, selectedTickets, cartTickets){
+  checkCart(user, orderId, event, selectedTickets, cartTickets){
     event.preventDefault();
-    cartTickets ? dispatch(addTicketsToOrder(orderId, selectedTickets)) : dispatch(createCart(userId, selectedTickets))
+    cartTickets.length ? dispatch(addTicketsToOrder(orderId, selectedTickets)) : dispatch(createCart(user, selectedTickets))
+  },
+
+  unmountClear(){
     dispatch(clearSelectedTickets())
   }
 })

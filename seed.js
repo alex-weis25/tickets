@@ -509,20 +509,29 @@ const tickets = [
 const orders = [
   {
     status: 'in-cart',
-    userId: 1
+    userId: 1,
+    orderEmail: 'test@example.com'
   },
   {
     status: 'in-cart',
-    userId: 2
+    userId: 2,
+    orderEmail: 'test@example.com'
   },
   {
     status: 'in-cart',
-    userId: 3
+    userId: 3,
+    orderEmail: 'test@example.com'
   },
   {
     status: 'in-cart',
-    userId: 4
+    orderEmail: 'test@example.com'
+  },
+  {
+    status: 'purchased',
+    userId: 5,
+    orderEmail: 'test@example.com'
   }
+
 ];
 
 const orderLines = [
