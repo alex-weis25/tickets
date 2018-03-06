@@ -25,7 +25,6 @@ export class SingleEvent extends Component {
   }
 
   toggleAddTicket(){
-    console.log('clicked');
     let status = this.state.showAddTickets;
     this.setState({showAddTickets: !status})
   }
