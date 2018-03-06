@@ -12,7 +12,7 @@ label {
 }
 
 form div {
-  margin: 1em;
+  margin-right: 10px;
   display: inline-block;
 }
 
@@ -223,6 +223,9 @@ button:disabled {
 
 .selected {
   background-color: rgba(4, 47, 66, 0.45);
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgb(64, 187, 241);
 }
 
 .buyTickets li {
