@@ -10,9 +10,13 @@ import { addTicketsToOrder, createCart } from '../store/cart.js';
 
 export class EventTickets extends Component {
 
+  componentWillUnmount(){
+    this.props.unmountClear()
+  }
+
   render() {
     const { checkCart, orderId, selectedTickets, cartTickets, eventTickets, user } = this.props
-    if(!eventTickets) return <div/>;
+    if(!eventTickets || ! cartTickets) return <div/>;
     let evtTix = eventTickets
     let tickets = evtTix.filter(eventTicket => {
       let cartTix = cartTickets
@@ -61,6 +65,9 @@ const MapDispatch = (dispatch, ownProps) => ({
   checkCart(user, orderId, event, selectedTickets, cartTickets){
     event.preventDefault();
     cartTickets.length ? dispatch(addTicketsToOrder(orderId, selectedTickets)) : dispatch(createCart(user, selectedTickets))
+  },
+
+  unmountClear(){
     dispatch(clearSelectedTickets())
   }
 })

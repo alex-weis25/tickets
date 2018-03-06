@@ -18,3 +18,4 @@ export default store
 export * from './user'
 export * from './events'
 export * from './cart'
+export * from './selectedTickets'

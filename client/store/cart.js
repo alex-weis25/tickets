@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import { clearSelectedTickets } from './index'
 /**
  * ACTION TYPES
  */
@@ -57,9 +57,10 @@ export const fetchCart = (userId) =>
       .then(res => res.data)
       .then(order => {
         if(!order) return undefined;
-        const orderId = order.id
-        const tickets = order.tickets
-        dispatch(initCart({orderId, tickets}))
+          const orderId = order.id
+          const tickets = order.tickets
+          dispatch(initCart({orderId, tickets}))
+        
       })
       .catch(err => console.log(err))
     : axios.get(`/api/session`)
@@ -94,10 +95,16 @@ export const addTicketsToOrder = (orderId, tickets) =>
   dispatch =>
     orderId 
       ? axios.put(`/api/orders/${orderId}`, tickets)
+        .then(res => res.data)
+        .then(updatedOrder => updatedOrder.tickets)
+        .then(tickets => dispatch(addTickets(tickets)))
+        .then(_=> dispatch(clearSelectedTickets()))
+        .catch(err => console.log(err))
       : axios.put(`/api/session`, tickets)
         .then(res => res.data)
         .then(updatedOrder => updatedOrder.tickets)
         .then(tickets => dispatch(addTickets(tickets)))
+        .then(_=> dispatch(clearSelectedTickets()))
         .catch(err => console.log(err))
 
 export const removeTicketFromOrder = (orderId, tickets) =>
