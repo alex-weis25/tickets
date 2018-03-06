@@ -234,7 +234,7 @@ const permissions = [
 const events = [
   {
     name: "Knicks vs. Lakers",
-    date: new Date(2018, 6, 18, 9, 30),
+    date: new Date(2018, 1, 18, 9, 30),
     duration: 2,
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
