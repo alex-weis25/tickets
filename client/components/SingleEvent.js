@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Route, Switch } from "react-router-dom";
-<<<<<<< HEAD
 import moment from 'moment';
-=======
 import EventReviews from './reviews/eventReview';
->>>>>>> master
 
 //import thunk to be mapped
 import { fetchEvent } from "../store/events.js";
@@ -42,18 +39,15 @@ export class SingleEvent extends Component {
             {venue && <h3>{venue.name}</h3>}
           </div>
         </div>
-<<<<<<< HEAD
         <div className="buyTickets">
           <h4>{event.description}</h4>
           <EventTickets />
         </div>
-=======
           {
            eventDate > today ?
             (<div><EventTickets /></div>) :
           (<EventReviews props={selectedEvent} users={users} />)
           }
->>>>>>> master
       </div>
     );
   }
