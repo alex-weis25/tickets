@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Route, Switch } from "react-router-dom";
+import moment from 'moment';
 import EventReviews from './reviews/eventReview';
 
 //import thunk to be mapped
@@ -27,17 +28,23 @@ export class SingleEvent extends Component {
     // console.log("today: ", today, "eventDate: ", eventDate, "greater than: ", today < eventDate)
     console.log('props: ', this.props);
     return (
-      <div>
+      <div className="single-event">
+        <img src={event.imgUrl} />
         <div className="single-title">
-          <h1>{event.name}</h1>
-          <img src={event.imgUrl} />
-          <h3>{event.date}</h3>
-          {venue && <h3>{venue.name}</h3>}
-          <p>{event.description}</p>
+          <div>
+            <h1>{event.name}</h1>
+          </div>
+          <div>
+            <h3>{moment(event.date).format('MMMM Do YYYY')} at {moment(event.date).format('h:mm A')}</h3>
+            {venue && <h3>{venue.name}</h3>}
+          </div>
         </div>
           {
            eventDate > today ?
-            (<div><EventTickets /></div>) :
+            (<div className="buyTickets">
+            <h4>{event.description}</h4>
+            <EventTickets />
+          </div>) :
           (<EventReviews props={selectedEvent} users={users} />)
           }
       </div>
