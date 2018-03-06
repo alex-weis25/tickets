@@ -157,7 +157,7 @@ router.put('/purchase/:orderId', (req, res, next) => {
   .catch(next);
 })
 
-//refactor for tickets in event
+//refactor for tickets in event and date
 function filterTickets(sessionTix, orderTix){
   let tickets = sessionTix.filter(orderTicket => {
     let sessionTickets = orderTix
