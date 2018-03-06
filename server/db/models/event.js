@@ -36,7 +36,10 @@ const Event = db.define('event', {
       {
         model: db.model('venue'),
         as: 'venue'
-      }]
+      },
+    {
+      model: db.model('review')
+    }]
     })
   }
 })
