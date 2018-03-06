@@ -236,6 +236,27 @@ button:disabled {
   padding: 1%;
 }
 
+/* Add Event Styling */
+.addEditForm{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.formItem{
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  width: 40vw;
+  align-items: center;
+}
+
+.formItem input, .formItem textarea, .formItem select{
+  width: 100%;
+  text-align: center;
+  font-size: 1em;
+}
 /* Cart Page Styling */
 
 .Review-Buy {
