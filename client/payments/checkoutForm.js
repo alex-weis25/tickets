@@ -37,6 +37,13 @@ class CheckoutForm extends Component{
         self.setState({ paymentError: response.error.message, submitDisabled: false });
       }
       else {
+        //Send email
+        const data = {
+          email: user.email,
+          amount: cartTotal
+        }
+        axios.post('/api/nodemailer', data);
+        //
         self.setState({ submitDisabled: false, token: response.id });
         // If it was suscessful, we are submitting the tokenzed card and order data to our API here
         axios.post('/api/creditAuth', {user, orderId, cartTotal, response})

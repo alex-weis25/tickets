@@ -28,9 +28,9 @@ export default class AddOrEditEventForm extends Component {
 
   render(){
     return (
-      <form onSubmit={this.props.onSubmit} id={this.props.formType}>
+      <form onSubmit={this.props.onSubmit} id={this.props.formType.split(' ').join('_')} className="addEditForm">
         <div className="formItem">
-          <legend>Name:</legend>
+          <legend>Name</legend>
           <input
             name="name"
             type="text"
@@ -42,7 +42,7 @@ export default class AddOrEditEventForm extends Component {
           <ValidationItems name="name" />
         </div>
         <div className="formItem">
-          <legend>Date:</legend>
+          <legend>Date</legend>
           <input
             name="date"
             type="date"
@@ -54,7 +54,7 @@ export default class AddOrEditEventForm extends Component {
           <ValidationItems name="date"/>
         </div>
         <div className="formItem">
-          <legend>Start Time:</legend>
+          <legend>Start Time</legend>
           <input
             name="time"
             type="time"
@@ -66,7 +66,7 @@ export default class AddOrEditEventForm extends Component {
           <ValidationItems name="time"/>
         </div>
         <div className="formItem">
-          <legend>Duration (Hours):</legend>
+          <legend>Duration (Hours)</legend>
           <input
             name="duration"
             type="number"
@@ -78,7 +78,7 @@ export default class AddOrEditEventForm extends Component {
           <ValidationItems name="duration"/>
         </div>
         <div className="formItem">
-          <legend>Description:</legend>
+          <legend>Description</legend>
           <textarea
             name="description"
             form={this.props.formType}
@@ -90,7 +90,7 @@ export default class AddOrEditEventForm extends Component {
           <ValidationItems name="description"/>
         </div>
         <div className="formItem">
-          <legend>Event Image:</legend>
+          <legend>Event Image</legend>
           <input
             name="imgUrl"
             type="text"
