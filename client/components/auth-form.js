@@ -10,26 +10,28 @@ const LoginForm = props => {
   const { name, displayName, handleSubmit, error } = props;
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
+    <div className="loginForm">
+      <form className="addEditForm" onSubmit={handleSubmit} name={name}>
+        <div className="formItem">
           <label htmlFor="email">
-            <small>Email</small>
+            Email
           </label>
-          <input name="email" type="text" />
+          <input name="email" type="text" placeholder="me@example.com"/>
         </div>
-        <div>
+        <div className="formItem">
           <label htmlFor="password">
-            <small>Password</small>
+            Password
           </label>
-          <input name="password" type="password" />
+          <input name="password" type="password" placeholder="password" />
         </div>
         <div>
           <button type="submit">{displayName}</button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-      <a href="/auth/google">{displayName} with Google</a>
+      <a href="/auth/google" className="oAuth">
+        <span>{displayName} with Google</span><img src="https://cdn4.iconfinder.com/data/icons/new-google-logo-2015/400/new-google-favicon-256.png"/>
+      </a>
     </div>
   );
 };
