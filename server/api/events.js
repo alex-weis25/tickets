@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Event } = require('../db/models')
+const { Event, Ticket } = require('../db/models')
 const permChecker = require('./permChecker');
 module.exports = router;
 
@@ -58,3 +58,25 @@ router.post('/', (req, res, next) => permChecker(req, res, next, 'addEvent'), (r
     res.json(error);
   });
 })
+
+  //add tickets
+  router.post('/tickets', (req, res, next) => permChecker(req, res, next, 'addTicket'), (req, res, next) => {
+    const newTickets = []
+    for (let i = 0; i < req.body.quantity; i++) {
+      let ticket = Ticket.build({
+        price: req.body.price,
+        seat: req.body.seat,
+        eventId: req.body.eventId
+      })
+      newTickets.push(ticket)
+    }
+    return Promise.all(newTickets.map(ticket => ticket.save()
+  ))
+    .then(found => {
+      console.log(found);
+      res.status(201).json(found)})
+    .catch(error => {
+      console.error(error);
+      res.json(error);
+    });
+  })

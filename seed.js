@@ -25,7 +25,7 @@ const venues = [
     zip: "10001",
     description:
       "Madison Square Garden, often called 'MSG' or simply 'The Garden', is a multi-purpose indoor arena in the New York City borough of Manhattan.",
-    imageUrl: getRandomImage()
+    imageUrl: 'https://www.msg.com/madison-square-garden'
   },
   {
     name: "Barclays Center",
@@ -35,7 +35,7 @@ const venues = [
     zip: "10001",
     description:
       "Barclays Center is a multi-purpose indoor arena in the New York City borough of Brooklyn. The arena is part of a $4.9 billion future business and residential complex now known as Pacific Park.",
-    imageUrl: getRandomImage()
+    imageUrl: 'http://www.barclayscenter.com/assets/img/about-1170x450-d9c047de75.jpg'
   },
   {
     name: "Metlife Stadium",
@@ -45,7 +45,7 @@ const venues = [
     zip: "10001",
     description:
       "MetLife Stadium is an American sports stadium located in East Rutherford, New Jersey. It is part of the Meadowlands Sports Complex and serves as the home stadium for two National Football League franchises: the New York Giants and the New York Jets.",
-    imageUrl: getRandomImage()
+    imageUrl: 'https://blog.tickpick.com/metlife-stadium-seating-chart/'
   },
   {
     name: "Bowery Ballroom",
@@ -55,7 +55,7 @@ const venues = [
     zip: "10001",
     description:
       "The Bowery Ballroom is a music venue in the Bowery section of Manhattan, New York City. The structure, at 6 Delancey Street, was built just before the Wall Street Crash in 1929.",
-    imageUrl: getRandomImage()
+    imageUrl: 'https://www.nycgo.com/images/venues/4506/livemusic_cmj_2012_bowery_ballroom_joe_buglewicz_2315__large.jpg'
   },
   {
     name: "Apollo Theater",
@@ -65,7 +65,7 @@ const venues = [
     zip: "10001",
     description:
       "The Apollo Theater at 253 West 125th Street between Adam Clayton Powell Jr. Boulevard and Frederick Douglass Boulevard in the Harlem neighborhood of Manhattan, New York City is a music hall which is a noted venue for African-American performers.",
-    imageUrl: getRandomImage()
+    imageUrl: 'http://www.mjworld.net/news/2016/05/31/michael-to-be-honoured-by-apollo-theatre/'
   },
   {
     name: "Comedy Cellar",
@@ -75,7 +75,7 @@ const venues = [
     zip: "10001",
     description:
       "The Comedy Cellar is a comedy club in Manhattan where many top New York comedians perform. It was founded in 1982 by then standup comedian, and current television writer/producer Bill Grundfest.",
-    imageUrl: getRandomImage()
+    imageUrl: 'http://theinterrobang.com/comedy-cellar-owner-noam-dworman-every-good-comic-in-the-city-is-working-at-the-cellar/'
   },
   {
     name: "Dizzy's Club",
@@ -85,7 +85,7 @@ const venues = [
     zip: "10001",
     description:
       "Upscale, intimate jazz club in Lincoln Center serving Southern-accented fare & themed cocktails.",
-    imageUrl: getRandomImage()
+    imageUrl: 'https://i.gse.io/gse_media/117/0/1485381010-Dizzys-Club-Coca-Cola-tickets.jpg?h=520&p=1&q=60&w=920&c=1'
   }
 ];
 
@@ -239,59 +239,59 @@ const events = [
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
     venueId: 1,
-    imgUrl: getRandomImage()
+    imgUrl: 'https://www.getmoresports.com/los-angeles-lakers-vs-new-york-knicks-odds/'
   },
   {
     name: "Drake",
     date: new Date(2018, 6, 18, 9, 30),
     duration: 3,
-    description: "Live concert",
+    description: "In the world of hip hop music, there aren't many names bigger than Drake. Come watch the man live in concert",
     venueId: 2,
-    imgUrl: getRandomImage()
+    imgUrl: 'https: //www.billboard.com/articles/columns/hip-hop/7510311/drake-kevin-durant-oakland-concert-golden-state-warriors'
   },
   {
-    name: "Louis C.K.",
+    name: "Dave Chappelle",
     date: new Date(2018, 6, 18, 9, 30),
     duration: 2,
     description: "Stand-up comedy",
-    venueId: 3,
-    imgUrl: getRandomImage()
-  },
-  {
-    name: "Funny show",
-    date: new Date(2018, 6, 18, 9, 30),
-    duration: 2,
-    description:
-      "Come see a funny show, laugh a little.",
-    venueId: 4,
-    imgUrl: getRandomImage()
-  },
-  {
-    name: "IronChef Live",
-    date: new Date(2018, 6, 18, 9, 30),
-    duration: 2,
-    description:
-      "Food, its a yummy show.",
     venueId: 5,
-    imgUrl: getRandomImage()
+    imgUrl: 'https://bombanoise.com/wp-content/uploads/2018/01/david-chappelle.jpg'
   },
   {
-    name: "More sports!",
+    name: "Fat Joe",
     date: new Date(2018, 6, 18, 9, 30),
     duration: 2,
     description:
-      "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
+      "Fat Joe live in concert",
+    venueId: 4,
+    imgUrl: 'https://www.billboard.com/files/media/fat-joe-bet-03-awards-2017-billboard-ap-1548.jpg'
+  },
+  {
+    name: "IronChef Gauntlet",
+    date: new Date(2018, 6, 18, 9, 30),
+    duration: 2,
+    description:
+      "Seven chefs from around the country battle each other in an elimination contest, with the last chef remaining then facing a challenge of defeating three Iron Chefs — Bobby Flay, Masaharu Morimoto and Michael Symon — in order to earn the title of Iron Chef.",
+    venueId: 5,
+    imgUrl: 'http://insider.directv.com/wp-content/uploads/2017/04/309892_lg_news_Iron_Chef_Gauntlet_Food_Network_gm.jpeg'
+  },
+  {
+    name: "Knicks vs. Cavs",
+    date: new Date(2018, 6, 18, 9, 30),
+    duration: 2,
+    description:
+      "New York Knicks host the Cleveland Caveliers for a regular season basketball game.",
     venueId: 1,
-    imgUrl: getRandomImage()
+    imgUrl: 'https://i.ytimg.com/vi/IaDwZ_iaKnM/maxresdefault.jpg'
   },
   {
     name: "Smooth Jazz",
     date: new Date(2018, 6, 18, 9, 30),
     duration: 2,
     description:
-      "Sexy show with some smooth jazz.",
+      "Sexy show with some silky smooth jazz.",
     venueId: 7,
-    imgUrl: getRandomImage()
+    imgUrl: 'http://i.imgur.com/UZYHcjn.jpg'
   },
   {
     name: "Open Mic",
@@ -300,7 +300,7 @@ const events = [
     description:
       "Open Mic, amateur hour.",
     venueId: 6,
-    imgUrl: getRandomImage()
+    imgUrl: 'https://harmonyhousetheatre.com/wp-content/uploads/2017/10/Open-Mic.jpg'
   },
   {
     name: "Monster Truck DEMOLITION",
@@ -309,16 +309,16 @@ const events = [
     description:
       "Monster trucks DEMO- smashing and bashing.",
     venueId: 2,
-    imgUrl: getRandomImage()
+    imgUrl: 'http://961wodz.com/files/2014/07/1597571-630x416.jpg?w=980&q=75'
   },
   {
     name: "eSports Live",
     date: new Date(2018, 6, 18, 9, 30),
     duration: 2,
     description:
-      "Catch up on League news.",
+      "See pros battle for glory live.",
     venueId: 4,
-    imgUrl: getRandomImage()
+    imgUrl: 'https://44s2n02i19u61od84f3rzjqx-wpengine.netdna-ssl.com/wp-content/uploads/2015/08/Helena-Kristiansson-LoL-All-Star-Paris-2-800x500_c.jpg'
   }
 ];
 
