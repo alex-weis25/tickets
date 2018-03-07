@@ -27,7 +27,6 @@ export class UserHome extends Component {
     axios
       .get(`/api/tickets/${userId}`)
       .then(res => {
-        console.log("order$#@", res.data);
         return res.data;
       })
       .then(orderLines => {
@@ -109,7 +108,6 @@ const mapDispatch = dispatch => {
     },
     getOrderLines: userId => {
       axios.put("/api/tickets", userId).then(orderLines => {
-        console.log("data is goood:", orderLines.data);
         return orderLines.data;
       });
     }

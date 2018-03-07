@@ -21,15 +21,15 @@ class ProvideEmail extends Component {
       let confirmWarning = this.state.firstEmail === this.state.secondEmail && !emailWarning ? '' : " does not match"
       return (
         <form onSubmit={onSubmit}>
-          <ul> 
+          <ul>
       <li><small>Email: {emailWarning ? emailWarning : confirmWarning ? confirmWarning : '' }</small></li>
-            <li><input name="firstEmail" 
+            <li><input name="firstEmail"
             className="form-control"
             value={this.state.firstEmail}
             onChange={this.handleChange}
             placeholder='Provide Email'
             /></li>
-            <li><input name="secondEmail" 
+            <li><input name="secondEmail"
             className="form-control"
             value={this.state.secondEmail}
             onChange={this.handleChange}
@@ -37,7 +37,7 @@ class ProvideEmail extends Component {
             /></li>
         <button type="submit" className="Email-btn"
         disabled={emailWarning || confirmWarning || this.state.secondEmail.length<1}>Submit Email</button></ul>
-        </form>       
+        </form>
     );
   }
 
@@ -46,10 +46,7 @@ class ProvideEmail extends Component {
     let key = evt.target.name
     let email = evt.target.value
     obj[key] = email
-    console.log(key,"...key")
-    console.log(email,"...email")
     this.setState(obj);
-    console.log(this.state,"..state")
   }
 
   validateEmail = email => {

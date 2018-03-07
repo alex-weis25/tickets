@@ -24,24 +24,19 @@ export class AddReview extends Component {
     }
     axios.post('/api/reviews', eventToSubmit)
     .then(results => {
-      console.log(results.data)
-      console.log("review submitted!");
     })
   };
 
   handleChange = event => {
     let { name, value } = event.target;
-    console.log(name, value);
     this.setState({
       [name]: value
     });
-    console.log("state on addReview: ", this.state)
   };
 
   render() {
     const myEvents = this.props.myEvents;
     const allEvents = this.props.events.events;
-    console.log("props", this.props)
     return (
       <div>
         <h2> Add review </h2>

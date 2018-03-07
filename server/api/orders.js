@@ -43,8 +43,7 @@ router.put('/:orderId', (req, res, next) => {
 
 //remove tix from the orderline
 router.put('/remove/:orderId', (req, res, next) => {
-  const removeTickets = req.body; 
-  console.log(req.body,"..removeTickets")
+  const removeTickets = req.body;
   const orderId = req.params.orderId
   return Promise.all(removeTickets.map(ticket => {
     return OrderLine.destroy({
@@ -57,7 +56,6 @@ router.put('/remove/:orderId', (req, res, next) => {
   .then(_ => {
     Order.scope('showTickets').findById(orderId)
     .then(found => {
-      console.log(found,"...found")
       res.status(200).json(found);
     })
   })
@@ -163,17 +161,6 @@ router.put('/purchase/:orderId', (req, res, next) => {
     });
     return tickets
   })
-  // .then(removeTix => {
-  //   console.log(removeTix[0].id);
-  //   removeTix.map(ticket => {
-  //     OrderLine.destroy({ where: {
-  //       ticketId: ticket.id,
-  //       orderId: {
-  //         $ne: req.params.orderId
-  //       }
-  //     }})
-  //   })
-  // })
   .then(sendIt => {
     req.session.destroy();
     res.status(201).json(sendIt);

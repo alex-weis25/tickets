@@ -5,7 +5,6 @@ import axios from "axios";
 import AddReview from "./addReview";
 
 export const UserReview = props => {
-  console.log("props on userReview: ", props)
   const allEvents = props.events.events;
   const myEventIds = props.myEvents;
   let pastEvents = [];
@@ -27,7 +26,6 @@ export const UserReview = props => {
     });
   const today = new Date();
 
-  console.log("past and future: ", pastEvents, futureEvents);
   return (
     <div>
       <h2> Upcoming Events </h2>
