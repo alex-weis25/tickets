@@ -8,25 +8,12 @@ import {removeTicketFromOrder} from '../store'
 //import component
 import CartTotal from "./CartTotal.jsx"
 import Checkout from '../payments/checkoutForm.js'
-import TicketListingItem from './TicketListingItem.jsx'
+import TicketListingItem from './TicketListingItem.1.jsx'
 import ProvideEmail from '../payments/ProvideEmail.js'
 
 
 
 export class Cart extends Component {
-
-  // componentDidMount(){
-  //   if(this.props.cart.tickets.length){
-  //     let removeTickets = this.props.cart.tickets;
-  //     console.log(removeTickets,'...removeTickets')
-  //     removeTickets = removeTickets.filter(ticket => {
-  //       console.log(ticket.orderId,'...orderId')
-  //       return ticket.orderId !== null
-  //     })
-  //     console.log(removeTickets,'...removeTickets')
-  //     if(removeTickets.length) this.props.removeTickets(this.props.orderId , removeTickets)
-  //   }
-  // }
 
   render() {
     const {user, orderId, cartTotal, cart} = this.props

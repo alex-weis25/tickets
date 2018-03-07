@@ -20,7 +20,7 @@ router.put('/', (req, res, next) => {
     res.status(200).json(req.session.cart)
 });
 
-router.delete('/', (req, res, next) => {
+router.put('/remove', (req, res, next) => {
     let sessionTix = req.session.cart.tickets
     let tickets = sessionTix.filter(sessionTicket => {
         let removeTix = req.body
@@ -29,6 +29,6 @@ router.delete('/', (req, res, next) => {
         })
         return removeTix.length === 0;
     })
-    req.sessions.cart.tickets = tickets
+    req.session.cart.tickets = tickets
     res.status(200).json(req.session.cart)
 });

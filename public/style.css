@@ -321,7 +321,7 @@ button:disabled {
   flex: 1;
 }
 .seatInfo{
-  flex: 3;
+  flex: 4;
   align-self: flex-start;
 }
 .ticketImg{
@@ -337,7 +337,6 @@ ul
 }
 
 .cartDivider {
-<<<<<<< HEAD
   border-top:1px dotted rgba(143, 143, 143, 0.788);
   width: 85%;
 }
@@ -378,8 +377,3 @@ ul
   margin: 0% 3% 0% 3%;
   color: white;
 }
-=======
-  border-top:3px dotted #000;
-  width: 95%;
-}
->>>>>>> master
