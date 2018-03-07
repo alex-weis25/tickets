@@ -239,7 +239,7 @@ const events = [
     description:
       "New York Knicks host the Los Angeles Lakers for a regular season basketball game.",
     venueId: 1,
-    imgUrl: 'https://www.getmoresports.com/los-angeles-lakers-vs-new-york-knicks-odds/'
+    imgUrl: 'http://i.imgur.com/KUuKRGa.jpg'
   },
   {
     name: "Drake",
@@ -247,7 +247,7 @@ const events = [
     duration: 3,
     description: "In the world of hip hop music, there aren't many names bigger than Drake. Come watch the man live in concert",
     venueId: 2,
-    imgUrl: 'https: //www.billboard.com/articles/columns/hip-hop/7510311/drake-kevin-durant-oakland-concert-golden-state-warriors'
+    imgUrl: 'http://doxygenmedia.com/wp-content/uploads/2017/11/drake-meek.jpg'
   },
   {
     name: "Dave Chappelle",
