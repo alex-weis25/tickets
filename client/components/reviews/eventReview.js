@@ -6,7 +6,6 @@ import axios from "axios";
 export const EventReview = props => {
   const reviews = props.props.reviews;
   const users = props.users;
-  console.log("props on ER:", users);
   return (
     <div>
       <h1> Reviews </h1>
@@ -17,7 +16,6 @@ export const EventReview = props => {
             {
                 users && users.map(user => {
                   if (user.id === review.userId){
-                    console.log(user.firstName, user.lastName)
                      return (
                       <h3 key={user.id}>{user.firstName} {user.lastName}
                       </h3>

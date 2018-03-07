@@ -53,7 +53,6 @@ router.post('/', (req, res, next) => permChecker(req, res, next, 'addEvent'), (r
     return Event.scope('showDetails').findById(created.id)
   })
   .then(found => {
-    console.log('in api', found);
     res.status(201).json(found)})
   .catch(error => {
     console.error(error);
@@ -75,7 +74,6 @@ router.post('/tickets', (req, res, next) => permChecker(req, res, next, 'addTick
   return Promise.all(newTickets.map(ticket => ticket.save()
 ))
   .then(found => {
-    console.log(found);
     res.status(201).json(found)})
   .catch(error => {
     console.error(error);

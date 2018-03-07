@@ -1,7 +1,6 @@
 const router = require('express').Router()
 module.exports = router;
 var stripe = require('stripe')(process.env.STRIPE_CLIENT_SECRET);
-console.log('PROCESS VARIABLES BE', process.env)
 
 
 //Credit Card Authorization
