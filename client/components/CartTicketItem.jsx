@@ -51,7 +51,7 @@ export class CartTicketItem extends Component {
                     <div key={ticket.id} className="individual-ticket">
                       <li>
                         <h4>SEAT: {ticket.seat}   PRICE: ${ticket.price}</h4>
-                        <input className="cartCheckbox" value={ticket.id} onClick={this.isChecked} onChange={(event) => this.props.handleChange(event, tickets)} type="checkbox" name="ticket" />
+                        <input background-color={'lightblue'} value={ticket.id} onClick={this.isChecked} onChange={(event) => this.props.handleChange(event, tickets)} type="checkbox" name="ticket" />
                       </li>
                     </div>
                   );
