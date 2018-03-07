@@ -19,9 +19,7 @@ router.post('/', (req, res, next) => {
   }, function(err, charge) {
     // asynchronously called
     if(err){
-      console.log('error:', err);
-      console.log('stripe charges: ', stripe.charges);
-      res.status(400).send(err, stripe.charges);
+      res.status(400).json(err);
     } else {
       res.status(200).json(charge);
     }
