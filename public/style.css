@@ -353,7 +353,7 @@ button:disabled {
   flex: 1;
 }
 .seatInfo{
-  flex: 3;
+  flex: 4;
   align-self: flex-start;
 }
 .ticketImg{

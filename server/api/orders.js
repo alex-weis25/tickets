@@ -42,13 +42,14 @@ router.put('/:orderId', (req, res, next) => {
 })
 
 //remove tix from the orderline
-router.delete('/:orderId', (req, res, next) => {
-  const removeTickets = req.body; //Assume obj w/ order id & arr of tickets
+router.put('/remove/:orderId', (req, res, next) => {
+  const removeTickets = req.body; 
+  console.log(req.body,"..removeTickets")
   const orderId = req.params.orderId
   return Promise.all(removeTickets.map(ticket => {
     return OrderLine.destroy({
-      Where:{
-        orderId: updatedId,
+      where:{
+        orderId: orderId,
         ticketId: ticket.id
       }
     })
@@ -92,17 +93,39 @@ router.post('/create', (req, res, next) => {
 //Populate users cart
 router.get('/cart/:userId', (req, res, next) => {
   let orderId;
+  console.log("hey I made it here!!!!")
   Order.scope('showTickets').findOne({ where: {
     userId: req.params.userId,
     status: 'in-cart'
   }})
   .then(order => {
-    if(req.session.cart.tickets.length && order){
+    if(req.session.cart.tickets.length && order.tickets.length){
       const sessionTickets = req.session.cart.tickets;
       const orderTickets = order.tickets
       orderId = order.id
       const tickets = filterTickets(sessionTickets, orderTickets)
-      const newOrders = tickets.map(ticket => {
+      if(tickets.length>0){
+        const newOrders = tickets.map(ticket => {
+          return OrderLine.build({
+            orderId,
+            ticketId: ticket.id
+          })
+        })
+        return Promise.all(newOrders.map(order => order.save()))
+        .then(_ => {
+          Order.scope('showTickets').findById(orderId)
+          .then(found => {
+             return res.status(200).json(found);
+          })
+        })
+      }
+      else{
+        res.status(200).json(order)
+      }
+    }
+    else if(req.session.cart.tickets.length){
+      const sessionTickets = req.session.cart.tickets;
+      const newOrders = sessionTickets.map(ticket => {
         return OrderLine.build({
           orderId,
           ticketId: ticket.id
@@ -112,7 +135,7 @@ router.get('/cart/:userId', (req, res, next) => {
       .then(_ => {
         Order.scope('showTickets').findById(orderId)
         .then(found => {
-          res.status(200).json(found);
+           return res.status(200).json(found);
         })
       })
     }
