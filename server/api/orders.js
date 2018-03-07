@@ -120,7 +120,7 @@ router.get('/cart/:userId', (req, res, next) => {
         })
       }
       else{
-      return res.status(200).json(order)
+        res.status(200).json(order)
       }
     }
     else if(req.session.cart.tickets.length){
@@ -139,13 +139,8 @@ router.get('/cart/:userId', (req, res, next) => {
         })
       })
     }
-<<<<<<< HEAD
-    else{ 
-      return res.status(200).json(order)
-=======
     else{
       res.status(200).json(order)
->>>>>>> master
     }
   })
   .catch(next);
