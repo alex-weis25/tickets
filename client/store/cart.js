@@ -53,10 +53,10 @@ export default function reducer(state = initialState, action) {
 export const fetchCart = (userId) =>
   dispatch =>{
     userId ?
-      axios.get(`api/orders/cart/${userId}`)
+      axios.get(`/api/orders/cart/${userId}`)
        .then(res => res.data)
        .then(order => {
-          if(order.id && order.tickets){
+          if(order.id || order.tickets){
             const orderId = order.id
             const tickets = order.tickets
             dispatch(initCart({orderId, tickets}))
@@ -92,11 +92,11 @@ export const addTicketsToOrder = (orderId, tickets) =>
   dispatch =>
     orderId 
       ? axios.put(`/api/orders/${orderId}`, tickets)
-        // .then(res => res.data)
-        // .then(updatedOrder => updatedOrder.tickets)
-        // .then(tickets => dispatch(addTickets(tickets)))
-        // .then(_=> dispatch(clearSelectedTickets()))
-        // .catch(err => console.log(err))
+        .then(res => res.data)
+        .then(updatedOrder => updatedOrder.tickets)
+        .then(tickets => dispatch(addTickets(tickets)))
+        .then(_=> dispatch(clearSelectedTickets()))
+        .catch(err => console.log(err))
       : axios.put(`/api/session`, tickets)
         .then(res => res.data)
         .then(updatedOrder => updatedOrder.tickets)
@@ -109,9 +109,20 @@ export const removeTicketFromOrder = (orderId, tickets) =>
     console.log(tickets,"...tickets in thunk")
     orderId 
       ? axios.put(`/api/orders/remove/${orderId}`, tickets)
+        .then(res => res.data)
+        .then(updatedOrder => {
+          console.log(updatedOrder,"...updatedOrder")
+          return updatedOrder.tickets
+        })
+        .then(tickets => dispatch(removeTickets(tickets)))
+        .then(_=> dispatch(clearSelectedTickets()))
+        .catch(err => console.log(err))
       : axios.put(`/api/session/remove`, tickets)
         .then(res => res.data)
-        .then(updatedOrder => updatedOrder.tickets)
+        .then(updatedOrder => {
+          console.log(updatedOrder,"...updatedOrder")
+          return updatedOrder.tickets
+        })
         .then(tickets => dispatch(removeTickets(tickets)))
         .then(_=> dispatch(clearSelectedTickets()))
         .catch(err => console.log(err))

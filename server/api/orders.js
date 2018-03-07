@@ -57,6 +57,7 @@ router.put('/remove/:orderId', (req, res, next) => {
   .then(_ => {
     Order.scope('showTickets').findById(orderId)
     .then(found => {
+      console.log(found,"...found")
       res.status(200).json(found);
     })
   })
@@ -93,7 +94,6 @@ router.post('/create', (req, res, next) => {
 //Populate users cart
 router.get('/cart/:userId', (req, res, next) => {
   let orderId;
-  console.log("hey I made it here!!!!")
   Order.scope('showTickets').findOne({ where: {
     userId: req.params.userId,
     status: 'in-cart'

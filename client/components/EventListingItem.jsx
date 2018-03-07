@@ -34,4 +34,18 @@ export default function EventListingItem(props) {
     </div>
 
   )
+
+  // ----I can refactor this function to show up to date ticket quanity-----
+  // filterTickets(sessionTix, orderTix){
+  //   let tickets = sessionTix.filter(orderTicket => {
+  //     let sessionTickets = orderTix
+  //     sessionTickets = sessionTickets.filter(sessionTicket => {
+  //       return orderTicket.id === sessionTicket.id
+  //     })
+  //     return sessionTickets.length === 0;
+  //   })
+  //   return tickets
+  // }
+  
 }
+
